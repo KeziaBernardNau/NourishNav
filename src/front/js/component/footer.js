@@ -12,13 +12,13 @@ export const Footer = () => {
         <div className="row">
           <div className="col-md-12">
             <div className="bg-transparent p-3">
-              <h3 className="text-center mb-4">Join Our Newsletter</h3>
-              <p className="text-center">
+              <h3 className="text-center mb-4 newsletter-text">Join Our Newsletter</h3>
+              <p className="text-center newsletter-desc">
                 Stay updated with our latest recipes, nutrition tips, and
                 special offers.
               </p>
-              <form className="row g-2">
-                <div className="col-md-5">
+              <form className="row g-2 d-flex justify-content-center">
+                <div className="col-md-5 ">
                   <input
                     type="email"
                     className="form-control"
@@ -26,19 +26,18 @@ export const Footer = () => {
                     placeholder="Your Email Address"
                   />
                 </div>
-                <div className="col-md-4">
-                  <input
-                    type="name"
-                    className="form-control"
-                    id="nameInput"
-                    placeholder="Your Name Please"
-                  />
-                </div>
                 <div className="col-md-3">
                   {/* LINK */}
                   <button type="submit" className="btn btn-success w-100">
                     Join Here
                   </button>
+                  <div className="col-md-5 d-flex justify-content-between" id="icons">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-twitter"></i>
+                    <i class="fa-brands fa-pinterest-p"></i>
+
+                  </div>
                 </div>
               </form>
             </div>
@@ -47,7 +46,7 @@ export const Footer = () => {
       </div>
 
       <footer id="footer" className="mt-auto py-3 text-center">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        {/* <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
             <Link className="navbar-brand" to={store.user ? "/profile" : "/"}>
               NourishNav
@@ -126,7 +125,7 @@ export const Footer = () => {
               </ul>
             </div>
           </div>
-        </nav>
+        </nav> */}
       </footer>
     </div>
   );

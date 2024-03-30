@@ -1,0 +1,77 @@
+export const recipe_list = [
+    {
+      id: "1",
+      title: "Chocolate Protein Oats",
+      img_url: "https://i.ibb.co/FBP3QZ8/breakfast3.jpg",
+      subtitle: "Energy Booster",
+      desc: "Dive into the creamy delight of Chocolate Protein Overnight Oats. Whole grain oats merge with rich chocolate and a protein boost, creating a decadent yet nutritious start to your day. Sweetened naturally and finished with a hint of sea salt, it's a quick, satisfying fix for your morning cravings.",
+      mealType: "Breakfast",
+    },
+    {
+      id: "2",
+      title: "Acai Bowl",
+      img_url: "https://i.ibb.co/jWRTjgS/breakfast2.jpg",
+      subtitle: "Bliss in a Bowl",
+      desc: "Dive into a refreshing Berry Acai Bowl, where the exotic acai berry meets a colorful array of fresh berries. Topped with crunchy granola and a drizzle of honey, this bowl is a perfect harmony of tart, sweet, and crunchy, making it an irresistible, energizing treat.",
+      mealType: "Breakfast",
+    },
+    {
+      id: "3",
+      title: "Berry Nut Oatmeal Delight",
+      img_url: "https://i.ibb.co/B4vDszf/breakfast1.jpg",
+      subtitle: "A Symphony of Wholesome Goodness",
+      desc: "Start your day with our Berry Nut Oatmeal Delight, where creamy, slow-cooked oats meet the juicy burst of fresh berries and the earthy crunch of toasted nuts. This heartwarming bowl is a testament to simplicity and nutrition, offering a balanced blend of flavors and textures that nourish the soul and energize the body.",
+      mealType: "Breakfast",
+    },
+    {
+      id: "4",
+      title: "Buddha Bowl",
+      img_url: "https://i.ibb.co/1zjdxB0/buddha-Bowl.jpg",
+      subtitle: "Delicious and Nutritious",
+      desc: "Discover the perfect balance of flavors and nutrients in our Buddha Bowl. Packed with protein, fiber, and essential vitamins.",
+      mealType: "Lunch",
+    },
+    {
+      id: "5",
+      title: "Mediterranean Salad",
+      img_url: "https://i.ibb.co/Ps2XDmd/food-Image2.jpg",
+      subtitle: "Fresh and Flavorful",
+      desc: "Indulge in the vibrant tastes of the Mediterranean with our refreshing salad. Bursting with fresh veggies, olives, feta cheese, and a tangy vinaigrette.",
+      mealType: "Lunch",
+    },
+    {
+      id: "6",
+      title: "Veggie Flat Wrap",
+      img_url: "https://i.ibb.co/DpqBwpZ/veggie-Wrap.jpg",
+      subtitle: "Full of Fiber",
+      desc: "Savor the freshness in every bite with our Veggie Wrap, a vibrant medley of crisp vegetables and tangy sauce, all snugly wrapped in a soft, whole-grain tortilla. Perfect for a quick, healthy lunch on the go!",
+      mealType: "Lunch",
+    },
+    {
+      id: "7",
+      title: "Pesto Bowtie Pasta",
+      img_url:
+        "https://i.ibb.co/s3GLGWz/eaters-collective-12e-HC6-Fx-Pyg-unsplash.jpg",
+      subtitle: "A Taste of Italy",
+      desc: "Savor the delightful harmony of tender bowtie pasta coated in a luscious basil pesto sauce. Our Pesto Bowtie Pasta offers a burst of fresh flavors with every bite, combining fragrant basil, toasted pine nuts, and grated Parmesan cheese. Perfect for a quick and satisfying meal that brings a taste of Italy to your table.",
+      mealType: "Dinner",
+    },
+    {
+      id: "8",
+      title: "Golden Butternut Squash Soup",
+      img_url:
+        "https://i.ibb.co/xJ9cpb4/monika-grabkowska-VVPC-DEBi2-I-unsplash.jpg",
+      subtitle: "A Warm Embrace in a Bowl",
+      desc: "Indulge in the comforting warmth of our Golden Butternut Squash Soup, a velvety blend that captures the essence of autumn in every spoonful. Crafted with the finest butternut squash, this soup is gently simmered to perfection, releasing the natural sweetness and rich flavors of the squash. Enhanced with a touch of freshly grated nutmeg and a swirl of cream, it offers a smooth, creamy texture that comforts the soul.",
+      mealType: "Dinner",
+    },
+    {
+      id: "9",
+      title: "Sunshine Chicken and Yellow Rice",
+      img_url: "https://i.ibb.co/SBTX1Wc/likemeat-f96pzs-JZpcs-unsplash.jpg",
+      subtitle: "A Vibrant Symphony of Flavors",
+      desc: "Savor the harmonious blend of tender chicken and aromatic yellow rice in our delightful Yellow Rice and Chicken dish. Succulent chicken pieces, seasoned to perfection, mingle with fragrant rice infused with turmeric and spices, creating a symphony of flavors that tantalize the taste buds. This classic combination promises a satisfying meal that's both comforting and full of flavor.",
+      mealType: "Dinner",
+    },
+  ];
+  

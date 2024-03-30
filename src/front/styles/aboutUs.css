@@ -1,0 +1,26 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f5f5; /* A very light, natural green background for a fresh look */
+  }
+  
+  .header {
+    text-align: center;
+    color: #32a852; /* A vibrant, mint green for headers to catch the eye */
+  }
+  
+  .text {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #2f4f4f; /* Darker shade of green for text, ensuring readability */
+    margin-bottom: 20px;
+  }
+  
+  .signature {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: right;
+    color: #2f4f4f; /* Matching the text color for consistency */
+  }
+  
