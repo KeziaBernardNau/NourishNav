@@ -3,13 +3,18 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #bac686;
+  background-color: rgb( 29,59,42 );
 }
 
-a {
-  color: #3b4a40;
+.newsletter-text {
+  color: #FFFFFF;
 }
 
-.nav-link {
-  color: #3b4a40;
+.newsletter-desc  {
+  color: #FFFFFF;
+}
+
+
+#icons {
+  
 }

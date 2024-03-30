@@ -10,6 +10,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import JWTManager
 from flask_cors import CORS 
+from flask_bcrypt import Bcrypt
 # from commands import recipe_list
 
 api = Blueprint('api', __name__)
@@ -95,6 +96,21 @@ def recipe_detail(id):
         return jsonify({"error": "Recipe not found"}), 404
 
 
+@api.route('/token', methods=['POST'])
+def create_token():
+    email = request.json.get("email")
+    password = request.json.get("password")
+    
+    user = User.query.filter_by(email=email, password=password).first()
+    if user is None:
+        
+        return jsonify({"msg": "Bad email or password"}), 401
+    
+  
+    access_token = create_access_token(identity=user.id)
+    return jsonify({ "token": access_token, "user_id": user.id }) ,200       
+
+
 # """
 # This module takes care of starting the API Server, Loading the DB, and Adding the endpoints.
 # """
@@ -159,19 +175,7 @@ def recipe_detail(id):
 #         return jsonify({"msg": "Bad email or password"}), 401
     
 
-# @api.route('/token', methods=['POST'])
-# def create_token():
-#     email = request.json.get("email")
-#     password = request.json.get("password")
-    
-#     user = User.query.filter_by(email=email, password=password).first()
-#     if user is None:
-        
-#         return jsonify({"msg": "Bad email or password"}), 401
-    
-  
-#     access_token = create_access_token(identity=user.id)
-#     return jsonify({ "token": access_token, "user_id": user.id }) ,200
+
 
 # #private route
 # @api.route("/private", methods=["GET"])
