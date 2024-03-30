@@ -93,18 +93,18 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      login: (form) => {
-        return fetch(`${apiUrl}/api/token`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: form.email,
-            password: form.password,
-          }),
-        })
-        .then(async (resp) => {
+      login: async (form) => {
+        try {
+          const resp = await fetch(`${apiUrl}/api/token`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: form.email,
+              password: form.password,
+            }),
+          });
           if (!resp.ok) {
             // Throw an error to be caught in the catch block
             throw new Error("Wrong email or password");
@@ -112,14 +112,12 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await resp.json();
           sessionStorage.setItem("token", data.token);
           setStore({ token: data.token });
-          // Optionally, return something indicating success
-          return true;
-        })
-        .catch((error) => {
+          return await true;
+        } catch (error) {
           console.error("Login error:", error);
           // Rethrow or handle error appropriately
           throw error;
-        });
+        }
       },
 
       logout: (navigate) => {
