@@ -1,6 +1,9 @@
 import React, { useEffect, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import "../../styles/profileview.css";
+
 
 const Private = () => {
     const { store, actions } = useContext(Context);
