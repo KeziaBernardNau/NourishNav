@@ -1,0 +1,119 @@
+.macro-body-gradient {
+    background: linear-gradient(to bottom, #72bb53, #ffffff);
+  }
+  
+  .macro-container {
+    width: 100%;
+    max-width: 600px; /* Adjust maximum width as needed */
+    margin: 0 auto; /* Center horizontally */
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    color: #2e8540; /* Darker green */
+  }
+  
+  .meal-container {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9; /* Light gray */
+  }
+  
+  .meal-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #2e8540; /* Darker green */
+  }
+  
+  .food-item input {
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+  }
+  
+  .food-item button {
+    border: none;
+    background-color: #2e8540; /* Darker green */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .food-item button:hover {
+    background-color: #1d5d24; /* Darker shade of green on hover */
+  }
+  
+  .list-group-item {
+    border: none;
+    background-color: #f9f9f9; /* Light gray */
+    border-radius: 5px;
+  }
+  
+  #total-calories {
+    font-weight: bold;
+    color: #2e8540; /* Darker green */
+  }
+  
+  .calories-container {
+    display: flex; /* Use flexbox */
+    justify-content: space-between; /* Distribute items evenly */
+    align-items: center; /* Center items vertically */
+  }
+  
+  .circle {
+    background-color: white;
+    border-radius: 50%;
+    border: 4px solid #2e8540; /* Darker green */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  #total-calories {
+    font-weight: bold;
+    color: #2e8540; /* Darker green */
+  }
+  
+  .modal-header {
+    color: #fff;
+    background-color: #2e8540; /* Darker green */
+    border-bottom: none;
+  }
+  
+  .modal-content {
+    background-color: #f9f9f9; /* Light gray */
+  }
+  
+  .modal-footer button {
+    background-color: #2e8540; /* Darker green */
+    border-color: #2e8540; /* Darker green */
+    color: white;
+  }
+  
+  .modal-footer button:hover {
+    background-color: #1d5d24; /* Darker shade of green on hover */
+  }
+  
+  .meal-icon {
+    font-size: 30px; /* Adjust the size as needed */
+    margin-right: 10px;
+    color: #ee6e57; /* Adjust the color as needed */
+  }
+  
+  .meal-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .meal-details {
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
