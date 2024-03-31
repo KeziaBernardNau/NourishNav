@@ -7,11 +7,15 @@ export const Navbar = () => {
   const { store, actions } = useContext(Context);
   return (
     <div id="whole-wheat" className="px-5">
-      <nav className="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-between">
+      <nav className="navbar navbar-expand-lg d-flex justify-content-between">
         <div className="d-flex justify-content-between w-100">
-          <Link className="navbar-brand" to={store.user ? "/profile" : "/"}>
-            NourishNav
-          </Link>
+        <Link
+  className="navbar-brand"
+  to={store.user ? "/profile" : "/"}
+  style={{ fontSize: '30px', color: 'forestGreen' }}
+>
+  NourishNav
+</Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -23,17 +27,6 @@ export const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-outline-success" type="submit">
-              Search
-            </button>
-          </form>
           <div
             className="collapse navbar-collapse flex-grow-0"
             id="navbarSupportedContent"
@@ -41,12 +34,12 @@ export const Navbar = () => {
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
                 <Link className="nav-link" to="/features">
-                  Features
+                  Home
                 </Link>
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/about">
-                  About
+                  Nutrition
                 </Link>
               </li>
               <li className="nav-item">
@@ -56,10 +49,15 @@ export const Navbar = () => {
               </li>
               <li className="nav-item">
                 <Link className="nav-link" to="/menu">
-                  Menu
+                  About
                 </Link>
               </li>
-              <li className="nav-item dropdown">
+              <li className="nav-item">
+                <Link className="nav-link" to="/menu">
+                  Profile
+                </Link>
+              </li>
+              {/* <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
                   role="button"
@@ -93,7 +91,7 @@ export const Navbar = () => {
                     </Link>
                   </li>
                 </ul>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>

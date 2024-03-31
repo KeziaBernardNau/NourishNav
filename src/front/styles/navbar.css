@@ -1,3 +1,7 @@
+navbar-brand {
+  font-size: 24px;
+  color: forestGreen;
+ } 
 /* * {
   border: 1px dashed red;
   min-height: 10px;
