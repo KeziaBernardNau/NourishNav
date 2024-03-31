@@ -53,9 +53,9 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/menu">
-                  Profile
-                </Link>
+              <Link className="nav-link profile-link" to="/profile">
+  Profile
+</Link>
               </li>
               {/* <li className="nav-item dropdown">
                 <a
