@@ -14,6 +14,7 @@ from flask_bcrypt import Bcrypt  # Add this import for Bcrypt
 from flask_mail import Mail
 from flask_mail import Message
 
+
 api = Blueprint('api', __name__)
 
 # Initialize Bcrypt here
@@ -21,14 +22,6 @@ bcrypt = Bcrypt()
 
 # Allow CORS requests to this API
 CORS(api)
-
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
 
 @api.route('/signup', methods=['POST'])
 def createUser():
@@ -38,63 +31,64 @@ def createUser():
     height = request.json.get("height")
     weight = request.json.get("weight")
     activity_level = request.json.get("activity_level")
-
     user = User.query.filter_by(email=email).first()
     if user != None:
         return jsonify({"msg": "email exists"}), 401
-    
     user = User(password=password, email = email, age = age, height= height, weight = weight, activity_level = activity_level)
     db.session.add(user)
     db.session.commit()
-    
     response_body = {
         "msg": "User successfully added "
     }
-
     return jsonify(response_body), 200
-
-@api.route('/login', methods=['POST'])
-def handle_login():
-    body = request.get_json()
-    user = User.query.filter_by(email=body['email']).first()
-    if user and bcrypt.check_password_hash(user.password, body['password']):
-        access_token = create_access_token(identity=body['email'])
-        return jsonify(access_token=access_token), 200
-    else:
-        return jsonify({"msg": "Bad email or password"}), 401
-    
-
-@api.route('/token', methods=['POST'])
-def create_token():
-    email = request.json.get("email")
-    password = request.json.get("password")
-    
-    user = User.query.filter_by(email=email, password=password).first()
-    if user is None:
-        
-        return jsonify({"msg": "Bad email or password"}), 401
-    
-  
-    access_token = create_access_token(identity=user.id)
-    return jsonify({ "token": access_token, "user_id": user.id }) ,200
-
-#private route
-@api.route("/private", methods=["GET"])
+@api.route('/private', methods=['GET'])
 @jwt_required()
 def protected():
-    current_user_id = get_jwt_identity()    
+    current_user_id = get_jwt_identity()
     user = User.query.get(current_user_id)
     if user is None:
         return jsonify({"msg": "Please login"})
     else:
         return jsonify({"user_id": user.id, "email":user.email}), 200
-    if user == None:
-            response_body = {
-                "msg": "Please login to continue"
-            }
-            return jsonify(response_body)
-
-            return jsonify({"id": user.id, "email": user.email }), 200
+# end of user related routes
+@api.route('/recipes', methods=['GET'])
+def get_all_recipes():
+    recipes = Recipe.query.all()
+    recipes_data = [
+        {
+            'id': recipe.id,
+            'title': recipe.title,
+            'subtitle': recipe.subtitle,
+            'desc': recipe.desc,
+            'img_url': recipe.img_url,
+            # Add other fields as needed
+        }
+        for recipe in recipes
+    ]
+    return jsonify(recipes_data)
+@api.route('/recipes/<int:id>', methods=['GET'])
+def recipe_detail(id):
+    recipe = Recipe.query.get(id)
+    if recipe:
+        return jsonify({
+            'id': recipe.id,
+            'title': recipe.title,
+            'subtitle': recipe.subtitle,
+            'desc': recipe.desc,
+            'img_url': recipe.img_url,
+            # Add other fields as needed
+        })
+    else:
+        return jsonify({"error": "Recipe not found"}), 404
+@api.route('/token', methods=['POST'])
+def create_token():
+    email = request.json.get("email")
+    password = request.json.get("password")
+    user = User.query.filter_by(email=email, password=password).first()
+    if user is None:
+        return jsonify({"msg": "Bad email or password"}), 401
+    access_token = create_access_token(identity=user.id)
+    return jsonify({ "token": access_token, "user_id": user.id }) ,200
 # end of user related routes
 
 # start of favorites routes
