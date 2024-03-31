@@ -28,7 +28,21 @@ export const Macrotrackerapi = ({ onAdd }) => {
             <button className="btn btn-primary" onClick={handleApiCall}>Search</button>
             {nutrition && (
                 <div>
-                    {/* Displaying the nutrition info */}
+                    {nutrition ? <div>
+				<li>{nutrition.name}</li>
+				<li>{nutrition.calories}</li>
+				<li>{nutrition.serving_size_g}</li>
+				<li>{nutrition.fat_total_g}</li>
+				<li>{nutrition.sugar_g}</li>
+				<li>{nutrition.fiber_g}</li>
+				<li>{nutrition.protein_g}</li>
+				<li>{nutrition.cholesterol_mg}</li>
+				<li>{nutrition.calories}</li>
+				<li>{nutrition.carbohydrates_total_g}</li>
+				<li>{nutrition.fat_saturated_g}</li>
+				<li>{nutrition.potassium_mg}</li>
+				<li>{nutrition.sodium_mg}</li>
+			</div> : ''}
                     <button onClick={() => onAdd(nutrition, mealType)}>Add to Meal</button>
                 </div>
             )}
