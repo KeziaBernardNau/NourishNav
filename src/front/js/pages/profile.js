@@ -1,24 +1,29 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Macrocalculator } from "../component/macrocalculator";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "../../styles/profileview.css";
-
 
 const Private = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
-  const [file, setFile] = useState("")
+  const [file, setFile] = useState("");
 
   const handleChange = (e) => {
-    setFile(URL.createObjectURL(e.target.files[0]))
+    setFile(URL.createObjectURL(e.target.files[0]));
   }
 
-  console.log(store.user)
+  console.log(store.user);
 
   useEffect(() => {
     updateFunction();
-  }, [file])
+  }, [file]);
+
+  const updateFunction = () => {
+    console.log("update function ran");
+    let response = process.env.BACKEND_URL + "";
+  }
 
   // useEffect(() => {
   //     if (!store.user) {
@@ -36,6 +41,7 @@ const Private = () => {
 
   return (
     <div className="container text-center">
+      <Macrocalculator />
       <h1>Hello!</h1>
       {store.user && (
         <div>
