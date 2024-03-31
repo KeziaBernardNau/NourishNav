@@ -112,6 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           const data = await resp.json();
           sessionStorage.setItem("token", data.token);
           setStore({ token: data.token });
+          setStore({ user: data.user });
           return await true;
         } catch (error) {
           console.error("Login error:", error);
