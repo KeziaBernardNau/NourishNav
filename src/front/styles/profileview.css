@@ -1,0 +1,26 @@
+.sidebar {
+    background-color: #f8f9fa; /* Light gray background */
+    padding-top: 20px;
+  }
+  
+  .sidebar ul.nav {
+    padding-left: 0;
+  }
+  
+  .sidebar .nav-link {
+    color: #333; /* Dark text color */
+  }
+  
+  .sidebar .nav-link.active {
+    font-weight: bold; /* Bold font for active link */
+  }
+  
+  /* Main Content Area Styles */
+  .main-content {
+    padding-top: 20px;
+  }
+  
+  .main-content h2 {
+    color: #333; /* Dark text color */
+    margin-bottom: 20px;
+  }
