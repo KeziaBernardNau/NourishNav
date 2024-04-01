@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import "../../styles/signup.css"; // Import CSS file
 
 export default function Signup() {
     const { actions } = useContext(Context);
@@ -26,30 +27,44 @@ export default function Signup() {
     };
 
     return (
-        <div className="text-left">
+        <div className="container">
             <h3>Join Us</h3>
             <p>Welcome! Join us by signing up below.</p>
             {/* Input fields */}
-            <p>Email</p>
-            <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-            <p>Password</p>
-            <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-            <p>Age</p>
-            <input type="number" onChange={(e) => setAge(e.target.value)} value={age} />
-            <p>Height (in cm)</p>
-            <input type="number" onChange={(e) => setHeight(e.target.value)} value={height} />
-            <p>Weight (in kg)</p>
-            <input type="number" onChange={(e) => setWeight(e.target.value)} value={weight} />
-            <p>Activity Level:</p>
-            <select value={activity} onChange={(e) => setActivity(e.target.value)}>
-                <option value="Very Active">Very Active</option>
-                <option value="Less">Less</option>
-                <option value="None">None</option>
-                <option value="Disabled">Disabled</option>
-            </select>
+            <div className="input-group">
+                <p>Email</p>
+                <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
+            </div>
+            <div className="input-group">
+                <p>Password</p>
+                <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
+            </div>
+            <div className="input-group">
+                <p>Age</p>
+                <input type="number" onChange={(e) => setAge(e.target.value)} value={age} />
+            </div>
+            <div className="input-group">
+                <p>Height (in cm)</p>
+                <input type="number" onChange={(e) => setHeight(e.target.value)} value={height} />
+            </div>
+            <div className="input-group">
+                <p>Weight (in kg)</p>
+                <input type="number" onChange={(e) => setWeight(e.target.value)} value={weight} />
+            </div>
+            <div className="input-group">
+                <p>Activity Level:</p>
+                <select value={activity} onChange={(e) => setActivity(e.target.value)}>
+                    <option value="Very Active">Very Active</option>
+                    <option value="Less">Less</option>
+                    <option value="None">None</option>
+                    <option value="Disabled">Disabled</option>
+                </select>
+            </div>
             {loginError && <p className="text-danger">{loginError}</p>}
-            <button onClick={handleSignup} className="btn btn-secondary">Sign up</button>
-            <p>Already a member? <span className="text-primary" style={{ cursor: 'pointer' }} onClick={() => navigate('/login')}>Log in</span></p>
+            <div className="button-group">
+                <button onClick={handleSignup}>Sign up</button>
+            </div>
+            <p>Already a member? <span className="text-primary" onClick={() => navigate('/login')}>Log in</span></p>
         </div>
     );
 };

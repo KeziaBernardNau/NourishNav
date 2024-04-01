@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import "../../styles/loginpage.css";
+import "../../styles/loginpage.css"; // Import CSS file
 import { Context } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -20,12 +20,10 @@ export default function Login() {
     } catch (error) {
         setError(error.message);
     }
-};
+  };
 
-  
-
- 
-    return (
+  return (
+    <div className="container">
       <form onSubmit={handleSubmit}>
         <h1 className="">Login</h1>
         <input
@@ -40,10 +38,12 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
+        {error && <p className="error-message">{error}</p>}
         <button type="submit">Login</button>
-        <button>
+        <div className="link-button">
           <Link to="/forgot">Forgot Password</Link>
-        </button>
+        </div>
       </form>
-    );
+    </div>
+  );
 }
