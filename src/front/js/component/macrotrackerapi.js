@@ -40,7 +40,7 @@ export const Macrotrackerapi = ({ onAdd }) => {
 				<li>{nutrition.calories}</li>
 				<li>{nutrition.carbohydrates_total_g}</li>
 				<li>{nutrition.fat_saturated_g}</li>
-				<li>{nutrition.potassium_mg}</li>
+				
 				<li>{nutrition.sodium_mg}</li>
 			</div> : ''}
                     <button onClick={() => onAdd(nutrition, mealType)}>Add to Meal</button>
