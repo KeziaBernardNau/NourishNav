@@ -1,10 +1,11 @@
 import React from "react";
 import "../../styles/hero.css";
-import nourishNav from "../../img/assets/nourishNav.gif";
+import nourishNav from "../../img/nourishNav.gif";
 
 const HeroSection = () => {
   return (
     <div className="hero">
+      <div></div>
       <div className="hero-background"></div>
       <div className="hero-overlay"></div>
       <div className="hero-content">

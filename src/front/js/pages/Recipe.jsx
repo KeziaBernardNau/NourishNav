@@ -45,7 +45,7 @@ const Recipe = () => {
   );
 
   return (
-    <div className="container-fluid">
+    <div className="container" style= "padding: 32px">
       <h1>Recipes</h1>
       <MealSection mealType="Breakfast" />
       <MealSection mealType="Lunch" />

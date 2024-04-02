@@ -1,42 +1,39 @@
-/* hero.css */
-
+/* General layout adjustments for the hero section */
 .hero {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
   position: relative;
   height: 100vh;
   background-color: mintcream;
   overflow: hidden;
 }
 
-.hero-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
-  height: 100%;
-  background-image: url("https://i.ibb.co/9qMr10V/tangerine-newt-Rg-T22-Ixcq4-Y-unsplash.jpg");
-  background-size: cover;
-  background-position: left;
-  z-index: 0;
-}
-
+/* Adjustments for the background and overlay to cover only the left half */
+.hero-background,
 .hero-overlay {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 50%; /* Adjusted to cover only the left half */
+  width: 50%;
   height: 100%;
-  z-index: 1;
+  z-index: 0;
 }
 
+.hero-background {
+  background-image: url("https://i.ibb.co/9qMr10V/tangerine-newt-Rg-T22-Ixcq4-Y-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+/* Styling for the content area, including the button */
 .hero-content {
-  position: relative;
   z-index: 2;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 0 20px;
+  justify-content: center; /* Center items vertically */
+  align-items: center; /* Center items horizontally */
+  padding: 20px;
 }
 
 .banner-title {
@@ -54,7 +51,8 @@
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
-.btn {
+/* Specific styling for the button to ensure it retains its appearance */
+.hero-content .btn {
   display: inline-block;
   padding: 10px 20px;
   background-color: salmon;
@@ -65,6 +63,21 @@
   transition: background-color 0.3s;
 }
 
-.btn:hover {
+.hero-content .btn:hover {
   background-color: rgb(241, 113, 90);
+}
+
+/* Styling for the GIF container on the right */
+.hero-gif {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.hero-gif img {
+  max-width: 100%;
+  height: auto; /* Ensure the GIF is responsive */
 }
