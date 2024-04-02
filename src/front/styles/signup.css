@@ -1,63 +1,90 @@
-/* signuppage.css */
-.container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  h3 {
-    margin-bottom: 10px;
-  }
-  
-  .input-group {
-    margin-bottom: 15px;
-  }
-  
-  .input-group p {
-    margin-bottom: 5px;
-  }
-  
-  .input-group input[type="email"],
-  .input-group input[type="password"],
-  .input-group input[type="number"],
-  .input-group select {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .button-group {
-    text-align: center;
-  }
-  
-  .button-group button {
-    padding: 10px 20px;
-    margin-top: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  
-  .button-group button:hover {
-    background-color: #0056b3;
-  }
-  
-  .text-secondary {
-    color: #6c757d;
-  }
-  
-  .text-primary {
-    color: #007bff;
-    cursor: pointer;
-  }
-  
-  .text-primary:hover {
-    text-decoration: underline;
-  }
-  
+.signup {
+  display: flex;
+  justify-content: flex-end; /* Align content to the right */
+  align-items: center; /* Center content vertically */
+  position: relative;
+  height: 100vh;
+  background-color: mintcream;
+  overflow: hidden;
+}
+
+.sign-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url("https://media.istockphoto.com/id/871339902/photo/flying-beef-steaks-with-grilled-vegetable-on-pan-separated-on-beige-background.jpg?s=1024x1024&w=is&k=20&c=b-4Hs52awREjUipCAclSEVv1pNhFj_qUO2oTJ7HNZGI=");
+  background-size: cover;
+  background-position: left; 
+  z-index: 0; 
+}
+
+.signup-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.signup-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.banner-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.input-field {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 250px; /* Adjust width as needed */
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: salmon !important;
+  color: white !important;
+  text-decoration: none !important;
+  border: none;
+  border-radius: 5px !important;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: rgb(241, 113, 90);
+}
+
+.link-button {
+  margin-top: 20px;
+}
+
+.link-button a {
+  color: blue;
+  text-decoration: none;
+}
+
+.link-button a:hover {
+  text-decoration: underline;
+}
