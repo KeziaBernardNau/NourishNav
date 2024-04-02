@@ -9,8 +9,29 @@ const Private = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const [file, setFile] = useState("");
+  const [userDetails, setUserDetails] = useState({
+    email: "",
+    name: "",
+    weight: "",
+    activityLevel: "",
+    currentTrack: "",
 
-  const handleChange = (e) => {
+  });
+
+  useEffect(() => {
+    if (!store.user) {
+      actions.authenticateUser().catch(() => navigate("/"));
+    } else {
+      setUserDetails(prevState => ({
+        ...preState,
+        email: store.user.email || "",
+        weight: store.user.weight || "",
+        activityLevel: store.user.activity.level || "",
+      }));
+    }
+  }, [store.user, actions, navigate]);
+
+  const handleFileChange = (e) => {
     setFile(URL.createObjectURL(e.target.files[0]));
   }
 
@@ -24,6 +45,13 @@ const Private = () => {
     console.log("update function ran");
     let response = process.env.BACKEND_URL + "";
   }
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setUserDetails(prevState => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   // useEffect(() => {
   //     if (!store.user) {
@@ -82,7 +110,7 @@ const Private = () => {
             <form>
               <div className="mb-3" style={{ width: "50%", paddingTop: "5px" }}>
                 <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={userDetails.email} onChange={handleChange} />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <label htmlFor="exampleInputPassword1" className="form-label">Name</label>
@@ -90,7 +118,17 @@ const Private = () => {
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <label htmlFor="exampleInputPassword1" className="form-label">Weight</label>
-                <input type="password" className="form-control" id="exampleInputWeight" />
+                <input type="number" className="form-control" id="exampleInputWeight" name="weight" value={userDetails.weight} onChange={handleChange} />
+              </div>
+              <div className="mb-3" style={{ width: "50%" }}>
+                <label htmlFor="exampleInputPassword1" className="form-label">Activity Level</label>
+                <input type="password" className="form-control" id="exampleInputActivityLevel" name="activityLevel" value={userDetails.activityLevel} onChange={handleChange} />
+                <select className="form-control" id="exampleInputActivityLevel" name="activityLevel" value={userDetails.activityLevel} onChange={handleChange}>
+                  <option value="Very Active">Very Active</option>
+                  <option value="Less">Less Active</option>
+                  <option value="None">Not Active</option>
+                  <option value="Disabled">Disabled</option>
+                </select>
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <label htmlFor="exampleInputPassword1" className="form-label">Current Track</label>
@@ -98,16 +136,16 @@ const Private = () => {
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <div class="btn-group">
-                <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dietary Preferences
-                </button>
-                <ul className="dropdown-menu">
+                  <button className="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dietary Preferences
+                  </button>
+                  <ul className="dropdown-menu">
                     ...
-                </ul>
+                  </ul>
                 </div>
               </div>
-<div className="btn-group">
-  <button className="btn btn-secondary btn-sm" type="button"></button>
+              <div className="btn-group">
+                <button className="btn btn-secondary btn-sm" type="button"></button>
               </div>
               <button type="submit" className="btn btn-primary">Save</button>
             </form>

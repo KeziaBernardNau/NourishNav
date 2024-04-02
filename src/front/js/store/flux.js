@@ -64,19 +64,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       signUp: async (form, callback) => {
         try {
-          const response = await fetch(apiUrl + "/api/signup", {
+          const response = await fetch(`${apiUrl}/api/signup`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              email: form.email,
-              password: form.password,
-              age: form.age,
-              height: form.height,
-              weight: form.weight,
-              activity_level: form.activity,
-            }),
+            body: JSON.stringify(form), 
           });
 
           if (!response.ok) {
@@ -84,7 +77,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             throw new Error(errorBody.message || "Signup failed");
           }
 
-          await response.json();
+          const userData = await response.json(); 
+          setStore({ user: { ...userData, weight: form.weight, activity_level: form.activity } });
 
           if (callback) callback();
         } catch (error) {

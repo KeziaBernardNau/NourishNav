@@ -18,22 +18,24 @@ export default function Signup() {
     const [loginError, setLoginError] = useState("");
 
     const handleSignup = async () => {
+        const form = { email, password, age, height, weight, activity };
         try {
-            await actions.signUp({ email, password, age, height, weight, activity });
-            navigate("/profile");
+            await actions.signUp(form, () => {
+                navigate("/profile");
+            });
         } catch (error) {
             setLoginError("Failed to sign up: " + error.message);
         }
     };
 
     return (
-        <div className="signup"> 
-            <div className="sign-background"></div> 
-            <div className="signup-overlay"></div> 
-            <div className="sign-content"> 
-                <h3 className="banner-title">Join Us</h3> 
+        <div className="signup">
+            <div className="sign-background"></div>
+            <div className="signup-overlay"></div>
+            <div className="sign-content">
+                <h3 className="banner-title">Join Us</h3>
                 <p>Welcome! Join us by signing up below.</p>
-                
+
                 <div className="input-group">
                     <p>Email</p>
                     <input type="email" className="input-field" onChange={(e) => setEmail(e.target.value)} value={email} />
