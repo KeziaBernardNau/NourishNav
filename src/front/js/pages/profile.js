@@ -23,14 +23,17 @@ const Private = () => {
       actions.authenticateUser().catch(() => navigate("/"));
     } else {
       setUserDetails(prevState => ({
-        ...preState,
+        ...prevState,
         email: store.user.email || "",
         weight: store.user.weight || "",
-        activityLevel: store.user.activity.level || "",
+        activityLevel: store.user.activityLevel || "",
       }));
     }
   }, [store.user, actions, navigate]);
 
+  function updateUser() {
+    actions.updateUser(userDetails.email, userDetails.weight, userDetails.activityLevel, file)
+  }
   const handleFileChange = (e) => {
     setFile(URL.createObjectURL(e.target.files[0]));
   }
@@ -147,7 +150,7 @@ const Private = () => {
               <div className="btn-group">
                 <button className="btn btn-secondary btn-sm" type="button"></button>
               </div>
-              <button type="submit" className="btn btn-primary">Save</button>
+              <button type="submit" onClick={() => updateUser()} className="btn btn-primary">Save</button>
             </form>
           </div>
         </div>

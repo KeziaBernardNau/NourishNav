@@ -1,4 +1,3 @@
-// Updated flux with code from jasmin-recipe branch that was working upon import
 const apiUrl = process.env.BACKEND_URL;
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -78,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           const userData = await response.json(); 
-          setStore({ user: { ...userData, weight: form.weight, activity_level: form.activity } });
+          setStore({ user: { ...userData, weight: form.weight, activity_level: form.activityLevel } });
 
           if (callback) callback();
         } catch (error) {
@@ -127,7 +126,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           fetch(apiUrl + "/api/private", {
             method: "GET",
             headers: {
-              Authorization: "Bearer " + getStore().token,
+              Authorization: "Bearer " + sessionStorage.getItem('token'),
             },
           })
             .then((resp) => {
@@ -146,6 +145,34 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+      updateUser: async (email, weight, activityLevel, profilePicture) => {
+        try {
+          const resp = await fetch(`${apiUrl}/api/updateUser`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + sessionStorage.getItem('token'),
+              
+            },
+            body: JSON.stringify({
+              email: email,
+              weight: weight,
+              activity_level: activityLevel,
+              profile_picture: profilePicture
+            }),
+          });
+          if (!resp.ok) {
+            // Throw an error to be caught in the catch block
+            throw new Error("Cannot update user");
+          }
+          const data = await resp.json();
+          return await true;
+        } catch (error) {
+          console.error("Update error:", error);
+          // Rethrow or handle error appropriately
+          throw error;
+        }
+      },
       tokenFromStore: () => {
         const token = sessionStorage.getItem("token");
         if (token && token != null && token != undefined) {

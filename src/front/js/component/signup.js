@@ -13,12 +13,12 @@ export default function Signup() {
     const [age, setAge] = useState("");
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
-    const [activity, setActivity] = useState("");
+    const [activityLevel, setActivity] = useState("");
 
     const [loginError, setLoginError] = useState("");
 
     const handleSignup = async () => {
-        const form = { email, password, age, height, weight, activity };
+        const form = { email, password, age, height, weight, activityLevel };
         try {
             await actions.signUp(form, () => {
                 navigate("/profile");
@@ -32,13 +32,13 @@ export default function Signup() {
         <div className="signup">
             <div className="sign-background"></div>
             <div className="signup-overlay"></div>
-            <div className="sign-content">
+            <div className="signup-content">
                 <h3 className="banner-title">Join Us</h3>
                 <p>Welcome! Join us by signing up below.</p>
 
                 <div className="input-group">
                     <p>Email</p>
-                    <input type="email" className="input-field" onChange={(e) => setEmail(e.target.value)} value={email} />
+                    <input type="email" className="input-field" name="email" onChange={(e) => setEmail(e.target.value)} value={email} />
                 </div>
                 <div className="input-group">
                     <p>Password</p>
@@ -54,11 +54,11 @@ export default function Signup() {
                 </div>
                 <div className="input-group">
                     <p>Weight (in kg)</p>
-                    <input type="number" className="input-field" onChange={(e) => setWeight(e.target.value)} value={weight} />
+                    <input type="number" name="weight" className="input-field" onChange={(e) => setWeight(e.target.value)} value={weight} />
                 </div>
                 <div className="input-group">
                     <p>Activity Level:</p>
-                    <select className="input-field" value={activity} onChange={(e) => setActivity(e.target.value)}>
+                    <select className="input-field" name="activityLevel" value={activityLevel} onChange={(e) => setActivity(e.target.value)}>
                         <option value="Very Active">Very Active</option>
                         <option value="Less">Less</option>
                         <option value="None">None</option>
