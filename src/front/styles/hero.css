@@ -1,0 +1,70 @@
+/* hero.css */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  background-color: mintcream;
+  overflow: hidden;
+}
+
+.hero-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url("https://i.ibb.co/9qMr10V/tangerine-newt-Rg-T22-Ixcq4-Y-unsplash.jpg");
+  background-size: cover;
+  background-position: left;
+  z-index: 0;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 0 20px;
+}
+
+.banner-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-text {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #ffff00;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: salmon;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.btn:hover {
+  background-color: rgb(241, 113, 90);
+}
