@@ -28,7 +28,11 @@ const Recipe = () => {
 
   const MealSection = ({ mealType }) => (
     <>
-      <h2 style={{ marginBottom: "20px", marginTop: "20px" }}>{mealType}</h2>
+      <h3
+        style={{ marginBottom: "20px", marginTop: "20px", textAlign: "left" }}
+      >
+        {mealType}
+      </h3>
       <div className="recipe-container">
         {filterByMealType(mealType).map((recipe) => (
           <div key={recipe.id} className="recipe-card">
@@ -55,7 +59,7 @@ const Recipe = () => {
 
   return (
     <div className="container" id="recipe-body">
-      <h1>Recipes</h1>
+      <h1 style={{ textAlign: "center" }}>Recipes</h1>
       <MealSection mealType="Breakfast" />
       <MealSection mealType="Lunch" />
       <MealSection mealType="Dinner" />
@@ -75,9 +79,11 @@ const Recipe = () => {
               </ul>
               <h5>Instructions:</h5>
               <ol>
-                {selectedRecipe.recipe.instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
+                {selectedRecipe.recipe.instructions.map(
+                  (instruction, index) => (
+                    <li key={index}>{instruction}</li>
+                  )
+                )}
               </ol>
             </>
           )}
