@@ -83,7 +83,7 @@ const Private = () => {
             </div>
           </div>
         </div>
-        <div style={{ height: "100dvh", width: "70%", marginLeft: "35%" }}>
+        <div style={{ height: "100dvh", width: "70%", marginLeft: "35%", paddingBottom: "50%" }}>
           <div className="col" style={{
             display: "flex",
             flexDirection: "column-reverse",
@@ -101,11 +101,15 @@ const Private = () => {
               width: "550px",
             }}>
               <div className="mb-3" style={{ width: "50%", paddingTop: "5px" }}>
-                <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" value={userDetails.email} onChange={handleChange} />
+                <label htmlFor="exampleInputName" className="form-label">Name</label>
+                <input type="email" className="form-control" id="exampleInputName" />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
-                <label htmlFor="exampleInputPassword1" className="form-label">Name</label>
+                <label htmlFor="exampleInputEmail" className="form-label">Email</label>
+                <input className="form-control" id="exampleInputName" aria-describedby="emailHelp" name="email" value={userDetails.email} onChange={handleChange} />
+              </div>
+              <div className="mb-3" style={{ width: "50%" }}>
+                <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
                 <input type="password" className="form-control" id="exampleInputName" />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
