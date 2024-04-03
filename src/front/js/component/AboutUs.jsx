@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../styles/aboutUs.css";
+import inclusiveBody from "../../img/inclusiveBody.jpeg";
 
 
 const AboutUs = () => {
@@ -30,11 +31,10 @@ const AboutUs = () => {
           celebrate each other's journeys and empower one another to live our healthiest, happiest
           lives.
         </p>
-        <p className="about-signature">With love and positivity,<br />The Founders</p>
+        <h5 className="about-signature">With love and positivity,<br />The Founders</h5>
       </div>
       <div className="about-image">
-        <img src='foodImage1.jpg' className="about-img"/>
-        {/* <img src={} alt="About Us" className="about-img" /> */}
+        <img src={inclusiveBody} alt="About Us" className="about-img" />
       </div>
     </div>
   );
