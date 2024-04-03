@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../../styles/macroTracker.css"; // Ensure this path is correct
+import "../../styles/macroTracker.css";
 import { Macrotrackerapi } from "../component/macrotrackerapi";
 
 function MacroTracker() {
@@ -26,6 +26,7 @@ function MacroTracker() {
       protein: nutrition.protein_g,
       fat: nutrition.fat_total_g,
       carbohydrates: nutrition.carbohydrates_total_g,
+      quantity: 1, // Initial quantity set to 1
     };
 
     setMeals((prevMeals) => ({
@@ -34,10 +35,10 @@ function MacroTracker() {
     }));
 
     setTotalMacros((prev) => ({
-      calories: prev.calories + newFoodItem.calories,
-      protein: prev.protein + newFoodItem.protein,
-      fat: prev.fat + newFoodItem.fat,
-      carbohydrates: prev.carbohydrates + newFoodItem.carbohydrates,
+      calories: Math.round(prev.calories + nutrition.calories),
+      protein: Math.round(prev.protein + nutrition.protein_g),
+      fat: Math.round(prev.fat + nutrition.fat_total_g),
+      carbohydrates: Math.round(prev.carbohydrates + nutrition.carbohydrates_total_g),
     }));
   };
 
@@ -45,21 +46,62 @@ function MacroTracker() {
     setSelectedMealType(selectedMealType === mealType ? "" : mealType);
   };
 
+  const handleDeleteFood = (mealType, itemId, itemQuantity) => {
+    const itemToDelete = meals[mealType].find(item => item.id === itemId);
+    setMeals((prevMeals) => ({
+      ...prevMeals,
+      [mealType]: prevMeals[mealType].filter((item) => item.id !== itemId),
+    }));
+    setTotalMacros((prev) => ({
+      calories: Math.round(prev.calories - (itemToDelete.calories * itemQuantity)),
+      protein: Math.round(prev.protein - (itemToDelete.protein * itemQuantity)),
+      fat: Math.round(prev.fat - (itemToDelete.fat * itemQuantity)),
+      carbohydrates: Math.round(prev.carbohydrates - (itemToDelete.carbohydrates * itemQuantity)),
+    }));
+  };
+
+  const handleEditFood = (mealType, itemId, newQuantity) => {
+    const itemToEdit = meals[mealType].find(item => item.id === itemId);
+    const oldQuantity = itemToEdit.quantity;
+    setMeals((prevMeals) => ({
+      ...prevMeals,
+      [mealType]: prevMeals[mealType].map((item) =>
+        item.id === itemId ? { ...item, quantity: newQuantity } : item
+      ),
+    }));
+
+    // Update total macros
+    setTotalMacros((prev) => ({
+      calories: Math.round(prev.calories - (itemToEdit.calories * oldQuantity) + (itemToEdit.calories * newQuantity)),
+      protein: Math.round(prev.protein - (itemToEdit.protein * oldQuantity) + (itemToEdit.protein * newQuantity)),
+      fat: Math.round(prev.fat - (itemToEdit.fat * oldQuantity) + (itemToEdit.fat * newQuantity)),
+      carbohydrates: Math.round(prev.carbohydrates - (itemToEdit.carbohydrates * oldQuantity) + (itemToEdit.carbohydrates * newQuantity)),
+    }));
+  };
+
   return (
     <div className="macro-container">
-      <h1 className="title">NourishNav</h1>
+      <div className="total-calories-container">
+        <div className="total-calories-circle">
+          {totalMacros.calories}
+        </div>
+        <p style={{ fontSize: '24px', fontWeight: 'bold' }}>Total Calories</p>
+      </div>
 
-      <div className="total-macros section">
-        <h3>Total Macros</h3>
-        <p>Calories: {totalMacros.calories}</p>
-        <p>Protein: {totalMacros.protein}g</p>
-        <p>Fat: {totalMacros.fat}g</p>
-        <p>Carbohydrates: {totalMacros.carbohydrates}g</p>
+      <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
+        <h5 style={{ margin: 0, padding: '0 10px' }}>Calories: {totalMacros.calories}</h5>
+        <h5 style={{ margin: 0, padding: '0 10px' }}>Protein: {totalMacros.protein}g</h5>
+        <h5 style={{ margin: 0, padding: '0 10px' }}>Fat: {totalMacros.fat}g</h5>
+        <h5 style={{ margin: 0, padding: '0 10px' }}>Carbohydrates: {totalMacros.carbohydrates}g</h5>
       </div>
 
       <div className="flex-container">
         <div className="macro-api-section section">
-          <Macrotrackerapi onAdd={handleAddFood} />
+          <Macrotrackerapi 
+            onAdd={handleAddFood} 
+            onDelete={handleDeleteFood} 
+            onEdit={handleEditFood} 
+          />
         </div>
 
         <div className="food-entries-section section">
@@ -76,9 +118,18 @@ function MacroTracker() {
                   <ul className="list-group no-bullets">
                     {meals[mealType].map((item) => (
                       <li key={item.id} className="list-group-item">
-                        {item.foodItem} - {item.calories} calories,{" "}
-                        {item.protein}g protein, {item.fat}g fat,{" "}
-                        {item.carbohydrates}g carbohydrates
+                        <div>
+                          <span>
+                            {item.foodItem} - {Math.round(item.calories * item.quantity)} calories, {Math.round(item.protein * item.quantity)}g protein, {Math.round(item.fat * item.quantity)}g fat, {Math.round(item.carbohydrates * item.quantity)}g carbohydrates
+                          </span>
+                          <input 
+                            type="number" 
+                            value={item.quantity} 
+                            onChange={(e) => handleEditFood(mealType, item.id, parseInt(e.target.value, 10))} 
+                          />
+                        </div>
+                        <button onClick={() => handleDeleteFood(mealType, item.id, item.quantity)} className="btn salmon-button"><i class="fa-solid fa-x"></i></button>
+
                       </li>
                     ))}
                   </ul>
@@ -93,3 +144,4 @@ function MacroTracker() {
 }
 
 export default MacroTracker;
+
