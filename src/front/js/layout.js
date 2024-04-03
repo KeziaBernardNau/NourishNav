@@ -1,4 +1,3 @@
-// Layout from jasmin-recipe branch that was working upon import
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
@@ -18,7 +17,8 @@ import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
-// import recipe_list from "../../../src/api/recipe_data.py"
+import HeroSection from "./component/HeroSection.jsx";
+
 import AboutUs from "./component/AboutUs.jsx";
 
 import MacroTracker from "./component/MacroTracker.js";
@@ -36,10 +36,11 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route element={<Home />} path="/" />
+            <Route element={<HeroSection />} path="/home" /> {/* Use HeroSection here */}
             <Route element={<Demo />} path="/demo" />
             <Route element={<MacroTracker />} path="/macro" />
             <Route element={<Recipe />} path="/recipe" />
-//             <Route element={<Contact />} path="contact" />
+             <Route element={<Contact />} path="/" />
             <Route element={<Recipe recipes={Recipe} />} path="/recipe" />
             <Route element={<Single />} path="/single/:theid" />
             <Route element={<Private />} path="/profile" />
@@ -56,6 +57,7 @@ const Layout = () => {
 };
 
 export default injectContext(Layout);
+
 
 
 

@@ -31,15 +31,15 @@ export const Footer = () => {
                   <button type="submit" className="btn btn-success w-100">
                     Join Here
                   </button>
-                  <div className="col-md-5 d-flex justify-content-between" id="icons">
+                </div>
+              </form>
+              <div id="icons">
                     <i class="fa-brands fa-facebook"></i>
                     <i class="fa-brands fa-instagram"></i>
                     <i class="fa-brands fa-twitter"></i>
                     <i class="fa-brands fa-pinterest-p"></i>
 
                   </div>
-                </div>
-              </form>
             </div>
           </div>
         </div>

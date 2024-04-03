@@ -1,3 +1,7 @@
+#recipe-body{
+  padding: 32px;
+}
+
 .card {
     background-color: rgba(0, 0, 0, 0.7);
     height: 200px; /* Decreased height */

@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { Button, Modal } from "react-bootstrap";
 import { recipe_list } from "../component/recipe_data";
 import "../../styles/recipe.css";
 
@@ -7,19 +8,31 @@ const Recipe = () => {
     console.log(recipe_list);
   }, []);
 
+  const [showModal, setShowModal] = useState(false);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+
   const addFavorite = (recipe) => {
     console.log("Add to favorites:", recipe.title);
-    // Placeholder for add to favorites functionality
+    setSelectedRecipe(recipe);
+    setShowModal(true);
   };
 
-  // Function to filter recipes by mealType
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedRecipe(null);
+  };
+
   const filterByMealType = (mealType) => {
     return recipe_list.filter((recipe) => recipe.mealType === mealType);
   };
 
   const MealSection = ({ mealType }) => (
     <>
-      <h2 style={{ marginBottom: "20px" }}>{mealType}</h2>
+      <h3
+        style={{ marginBottom: "20px", marginTop: "20px", textAlign: "left" }}
+      >
+        {mealType}
+      </h3>
       <div className="recipe-container">
         {filterByMealType(mealType).map((recipe) => (
           <div key={recipe.id} className="recipe-card">
@@ -35,7 +48,7 @@ const Recipe = () => {
                 className="btn btn-success"
                 onClick={() => addFavorite(recipe)}
               >
-                Add to Favorites
+                Recipe
               </button>
             </div>
           </div>
@@ -45,11 +58,42 @@ const Recipe = () => {
   );
 
   return (
-    <div className="container-fluid">
-      <h1>Recipes</h1>
+    <div className="container" id="recipe-body">
+      <h1 style={{ textAlign: "center" }}>Recipes</h1>
       <MealSection mealType="Breakfast" />
       <MealSection mealType="Lunch" />
       <MealSection mealType="Dinner" />
+
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>{selectedRecipe && selectedRecipe.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedRecipe && (
+            <>
+              <h5>Ingredients:</h5>
+              <ul>
+                {selectedRecipe.recipe.ingredients.map((ingredient, index) => (
+                  <li key={index}>{ingredient}</li>
+                ))}
+              </ul>
+              <h5>Instructions:</h5>
+              <ol>
+                {selectedRecipe.recipe.instructions.map(
+                  (instruction, index) => (
+                    <li key={index}>{instruction}</li>
+                  )
+                )}
+              </ol>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

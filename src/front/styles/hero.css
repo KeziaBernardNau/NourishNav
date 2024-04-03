@@ -1,0 +1,80 @@
+.hero {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
+  position: relative;
+  height: 100vh;
+  background-color: mintcream;
+  overflow: hidden;
+}
+
+/* Adjustments for the background and overlay to cover only the left half */
+.hero-background,
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  right: 50%;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+}
+
+.hero-background {
+  background-image: url("https://i.ibb.co/9qMr10V/tangerine-newt-Rg-T22-Ixcq4-Y-unsplash.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-content {
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.banner-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-text {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #ffff00;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content .btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: salmon;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.hero-content .btn:hover {
+  background-color: rgb(241, 113, 90);
+}
+
+/* Styling for the GIF container on the right */
+.hero-gif {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.hero-gif img {
+  max-width: 100%;
+  height: auto; /* Ensure the GIF is responsive */
+}

@@ -1,119 +1,141 @@
-.macro-body-gradient {
-    background: linear-gradient(to bottom, #72bb53, #ffffff);
-  }
-  
-  .macro-container {
-    width: 100%;
-    max-width: 600px; /* Adjust maximum width as needed */
-    margin: 0 auto; /* Center horizontally */
-    padding: 20px;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #2e8540; /* Darker green */
-  }
-  
-  .meal-container {
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9; /* Light gray */
-  }
-  
-  .meal-name {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: #2e8540; /* Darker green */
-  }
-  
-  .food-item input {
-    margin-right: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    padding: 5px 10px;
-  }
-  
-  .food-item button {
-    border: none;
-    background-color: #2e8540; /* Darker green */
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .food-item button:hover {
-    background-color: #1d5d24; /* Darker shade of green on hover */
-  }
-  
-  .list-group-item {
-    border: none;
-    background-color: #f9f9f9; /* Light gray */
-    border-radius: 5px;
-  }
-  
-  #total-calories {
-    font-weight: bold;
-    color: #2e8540; /* Darker green */
-  }
-  
-  .calories-container {
-    display: flex; /* Use flexbox */
-    justify-content: space-between; /* Distribute items evenly */
-    align-items: center; /* Center items vertically */
-  }
-  
-  .circle {
-    background-color: white;
-    border-radius: 50%;
-    border: 4px solid #2e8540; /* Darker green */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #total-calories {
-    font-weight: bold;
-    color: #2e8540; /* Darker green */
-  }
-  
-  .modal-header {
-    color: #fff;
-    background-color: #2e8540; /* Darker green */
-    border-bottom: none;
-  }
-  
-  .modal-content {
-    background-color: #f9f9f9; /* Light gray */
-  }
-  
-  .modal-footer button {
-    background-color: #2e8540; /* Darker green */
-    border-color: #2e8540; /* Darker green */
-    color: white;
-  }
-  
-  .modal-footer button:hover {
-    background-color: #1d5d24; /* Darker shade of green on hover */
-  }
-  
-  .meal-icon {
-    font-size: 30px; /* Adjust the size as needed */
-    margin-right: 10px;
-    color: #ee6e57; /* Adjust the color as needed */
-  }
-  
-  .meal-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .meal-details {
-    margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
+/* Overall container adjustments for a modern look */
+.macro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Section styling for a cohesive appearance */
+.section {
+  flex: 1;
+  margin: 0 10px;
+  padding: 20px;
+  border-radius: 8px; /* Softer corners */
+  background-color: #f9f9f9; /* Slightly off-white for a modern, clean look */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+/* Enhances the hover effect with a subtle shadow increase */
+.section:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Flex container for responsive layout */
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+/* Styling headings for a uniform, elegant look */
+h2 {
+  text-align: center;
+  color: #2e8540; /* Rich green */
+  font-family: 'Arial', sans-serif; /* Modern, readable font */
+}
+
+/* Meal container for clear, separated sections */
+.meal-container {
+  margin-bottom: 20px;
+  border-radius: 8px; /* Softer corners */
+  background-color: #fff; /* Pure white for contrast */
+  padding: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Meal names with emphasis and clarity */
+.meal-name {
+  font-size: 20px; /* Slightly larger for emphasis */
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #2e8540; /* Rich green */
+}
+
+/* Input fields with elegant styling */
+.food-item input {
+  margin-right: 10px;
+  border-radius: 8px; /* Softer corners */
+  border: 1px solid #ccc;
+  padding: 8px 15px;
+  width: calc(100% - 24px); /* Full-width input fix */
+}
+
+/* Buttons with a modern, clean look */
+.food-item button, .modal-footer button {
+  border: none;
+  background-color: #2e8540; /* Darker green */
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px; /* Softer corners */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Enhanced hover effect for buttons */
+.food-item button:hover, .modal-footer button:hover {
+  background-color: #1d5d24; /* Darker shade of green on hover */
+}
+
+/* Customized list items within meal sections */
+.list-group-item {
+  background-color: #f9f9f9; /* Light gray for contrast */
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px; /* Space between items */
+}
+
+/* Unified style for calorie counts and other labels */
+#total-calories, .meal-icon, .meal-info, .meal-details {
+  color: #2e8540; /* Consistent green accent */
+}
+
+/* No bullet points for lists */
+.no-bullets {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.meal-type-row {
+  margin-bottom: 10px;
+}
+
+.meal-type-button {
+  width: 100%;
+  background-color: #2e8540;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.meal-type-button:hover {
+  background-color: #1d5d24;
+}
+
+.meal-details-container {
+  margin-top: 10px;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border-bottom: 1px solid #ddd;
+  padding: 5px;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
