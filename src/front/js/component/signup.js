@@ -21,7 +21,7 @@ export default function Signup() {
         const form = { email, password, age, height, weight, activityLevel };
         try {
             await actions.signUp(form, () => {
-                navigate("/profile");
+                navigate("/login");
             });
         } catch (error) {
             setLoginError("Failed to sign up: " + error.message);

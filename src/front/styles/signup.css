@@ -1,7 +1,7 @@
 .signup {
   display: flex;
-  justify-content: flex-end; /* Align content to the right */
-  align-items: center; /* Center content vertically */
+  justify-content: flex-end; 
+  align-items: center; 
   position: relative;
   height: 100vh;
   background-color: mintcream;
@@ -12,7 +12,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 50%;
+  width: 100%;
   height: 100%;
   background-image: url("https://media.istockphoto.com/id/871339902/photo/flying-beef-steaks-with-grilled-vegetable-on-pan-separated-on-beige-background.jpg?s=1024x1024&w=is&k=20&c=b-4Hs52awREjUipCAclSEVv1pNhFj_qUO2oTJ7HNZGI=");
   background-size: cover;

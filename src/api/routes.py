@@ -108,7 +108,7 @@ def create_token():
     if user is None:
         return jsonify({"msg": "Bad email or password"}), 401
     access_token = create_access_token(identity=user.id)
-    return jsonify({ "token": access_token, "user_id": user.id }) ,200
+    return jsonify({ "token": access_token, "user_id": user.id, "user": user.serialize() }) ,200
 # end of user related routes
 
 # start of favorites routes
