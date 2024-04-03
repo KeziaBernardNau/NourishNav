@@ -101,34 +101,29 @@ const Private = () => {
               width: "550px",
             }}>
               <div className="mb-3" style={{ width: "50%", paddingTop: "5px" }}>
-                <label htmlFor="exampleInputName" className="form-label">Name</label>
+                <label htmlFor="exampleInputName1" className="form-label">Name</label>
                 <input type="email" className="form-control" id="exampleInputName" />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
-                <label htmlFor="exampleInputEmail" className="form-label">Email</label>
-                <input className="form-control" id="exampleInputName" aria-describedby="emailHelp" name="email" value={userDetails.email} onChange={handleChange} />
+                <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
+                <input className="form-control" id="exampleInputEmail" aria-describedby="emailHelp" name="email" value={userDetails.email} onChange={handleChange} />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <label htmlFor="exampleInputPassword1" className="form-label">Password</label>
-                <input type="password" className="form-control" id="exampleInputName" />
+                <input type="password" className="form-control" id="exampleInputPassword" />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <label htmlFor="exampleInputPassword1" className="form-label">Weight</label>
                 <input type="number" className="form-control" id="exampleInputWeight" name="weight" value={userDetails.weight} onChange={handleChange} />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
-                <label htmlFor="exampleInputPassword1" className="form-label">Activity Level</label>
-                <input type="password" className="form-control" id="exampleInputActivityLevel" name="activityLevel" value={userDetails.activityLevel} onChange={handleChange} />
+                <label htmlFor="exampleInputActivityLevel1" className="form-label">Activity Level</label>
                 <select className="form-control" id="exampleInputActivityLevel" name="activityLevel" value={userDetails.activityLevel} onChange={handleChange}>
                   <option value="Very Active">Very Active</option>
                   <option value="Less">Less Active</option>
                   <option value="None">Not Active</option>
                   <option value="Disabled">Disabled</option>
                 </select>
-              </div>
-              <div className="mb-3" style={{ width: "50%" }}>
-                <label htmlFor="exampleInputPassword1" className="form-label">Current Track</label>
-                <input type="password" className="form-control" id="exampleInputCurrentTrack" />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <div class="btn-group">

@@ -86,6 +86,7 @@ def updateUser():
     }
     return jsonify(response_body), 200
 
+
 @api.route('/recipes/<int:id>', methods=['GET'])
 def recipe_detail(id):
     recipe = Recipe.query.get(id)
@@ -100,6 +101,7 @@ def recipe_detail(id):
         })
     else:
         return jsonify({"error": "Recipe not found"}), 404
+    
 @api.route('/token', methods=['POST'])
 def create_token():
     email = request.json.get("email")

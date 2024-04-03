@@ -12,7 +12,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 50%;
   height: 100%;
   background-image: url("https://media.istockphoto.com/id/871339902/photo/flying-beef-steaks-with-grilled-vegetable-on-pan-separated-on-beige-background.jpg?s=1024x1024&w=is&k=20&c=b-4Hs52awREjUipCAclSEVv1pNhFj_qUO2oTJ7HNZGI=");
   background-size: cover;
@@ -53,6 +53,10 @@
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 250px; /* Adjust width as needed */
+}
+
+#passwordInput {
+
 }
 
 .error-message {
