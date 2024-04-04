@@ -145,8 +145,31 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+
+      
+      fetchProfilePicture: async () => {
+        try {
+          const resp = await fetch(`${apiUrl}/api/profilePicture`, {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem('token'),
+          },
+       });
+          if (!resp.ok) {
+            throw new Error("Failed to fetch profile picture");
+          }
+          const data = await resp.json();
+    
+        return data.profile_picture;
+     } catch (error) {
+        console.error("Fetch profile picture error:", error);
+      throw error;
+    }
+  },
+
       updateUser: async (email, weight, activityLevel, profilePicture) => {
         try {
+          const fetchedProfilePicture = await getActions().fetchProfilePicture();
           const resp = await fetch(`${apiUrl}/api/updateUser`, {
             method: "PUT",
             headers: {
@@ -158,18 +181,19 @@ const getState = ({ getStore, getActions, setStore }) => {
               email: email,
               weight: weight,
               activity_level: activityLevel,
-              profile_picture: profilePicture
+              profile_picture: fetchedProfilePicture || profilePicture
             }),
           });
           if (!resp.ok) {
-            // Throw an error to be caught in the catch block
+            
             throw new Error("Cannot update user");
           }
           const data = await resp.json();
-          return await true;
+          console.log(data,"user profile info")
+          return true;
         } catch (error) {
           console.error("Update error:", error);
-          // Rethrow or handle error appropriately
+          
           throw error;
         }
       },

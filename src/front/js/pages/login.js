@@ -27,10 +27,10 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <div className="login">
           <div className="login-background"></div>
-          <div className="login-overlay"></div>
-          <div className="login-content">
+          <div className="login-overlay" ></div>
+          <div className="login-content" style={{ marginLeft: "20%" }}>
             <h1 className="banner-title">Login</h1>
-            <div className="input-group">
+            <div className="input-group" >
               <input
                 className="input-field"
                 type="text"
@@ -39,7 +39,7 @@ export default function Login() {
                 onChange={(e) => setemail(e.target.value)}
               />
             </div>
-            <div className="input-group">
+            <div className="input-group" >
               <input
                 className="input-field"
                 type="password"

@@ -35,7 +35,10 @@ export default function Signup() {
             <div className="signup-content">
                 <h3 className="banner-title">Join Us</h3>
                 <p>Welcome! Join us by signing up below.</p>
-
+                <div className="input-group">
+                    <p>Name</p>
+                    <input type="name" className="input-field" name="name" onChange={(e) => setName(e.target.value)} value={name} />
+                </div>
                 <div className="input-group">
                     <p>Email</p>
                     <input type="email" className="input-field" name="email" onChange={(e) => setEmail(e.target.value)} value={email} />

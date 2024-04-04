@@ -27,9 +27,12 @@ const Private = () => {
         email: store.user.email || "",
         weight: store.user.weight || "",
         activityLevel: store.user.activityLevel || "",
+        profilePicture: store.user.profilePicture || "",
       }));
     }
   }, [store.user, actions, navigate]);
+
+
 
   function updateUser() {
     actions.updateUser(userDetails.email, userDetails.weight, userDetails.activityLevel, file)
@@ -135,7 +138,7 @@ const Private = () => {
                   </ul>
                 </div>
               </div>
-              <button style={{ position: "absolute", right: "110%" }} type="submit" onClick={() => updateUser()} className="btn btn-primary">Save</button>
+              <button style={{ position: "absolute", right: "110%" }} type="button" onClick={() => updateUser()} className="btn btn-primary">Save</button>
             </form>
           </div>
         </div>
