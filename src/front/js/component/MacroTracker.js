@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/macroTracker.css";
 import { Macrotrackerapi } from "../component/macrotrackerapi";
+import Calendar from 'react-calendar'; 
+import { format } from 'date-fns';
+import { WaterTracker } from "./WaterTracker";
+
 
 function MacroTracker() {
   const [meals, setMeals] = useState({
@@ -17,6 +21,17 @@ function MacroTracker() {
     carbohydrates: 0,
   });
   const [selectedMealType, setSelectedMealType] = useState("");
+  const [showCalendar, setShowCalendar] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  const toggleCalendar = () => {
+    setShowCalendar(!showCalendar); 
+    setSelectedDate(new Date()); // Update selected date to current date when toggling calendar
+  };
+
+  const onChangeCalendar = (newDate) => {
+    setSelectedDate(newDate);
+  };
 
   const handleAddFood = (nutrition, mealType) => {
     const newFoodItem = {
@@ -26,7 +41,7 @@ function MacroTracker() {
       protein: nutrition.protein_g,
       fat: nutrition.fat_total_g,
       carbohydrates: nutrition.carbohydrates_total_g,
-      quantity: 1, // Initial quantity set to 1
+      quantity: 1, 
     };
 
     setMeals((prevMeals) => ({
@@ -70,7 +85,6 @@ function MacroTracker() {
       ),
     }));
 
-    // Update total macros
     setTotalMacros((prev) => ({
       calories: Math.round(prev.calories - (itemToEdit.calories * oldQuantity) + (itemToEdit.calories * newQuantity)),
       protein: Math.round(prev.protein - (itemToEdit.protein * oldQuantity) + (itemToEdit.protein * newQuantity)),
@@ -94,6 +108,22 @@ function MacroTracker() {
         <h5 style={{ margin: 0, padding: '0 10px' }}>Fat: {totalMacros.fat}g</h5>
         <h5 style={{ margin: 0, padding: '0 10px' }}>Carbohydrates: {totalMacros.carbohydrates}g</h5>
       </div>
+
+      <div className="calendar-control" onClick={toggleCalendar}>
+        <button className="btn btn-success">
+          {format(selectedDate, "MMMM d, yyyy")} {/* Display current or selected date */}
+        </button>
+      </div>
+
+      {showCalendar && (
+        <div className="calendar-section mt-4">
+          <Calendar
+            onChange={onChangeCalendar}
+            value={selectedDate}
+            minDetail="day"
+          />
+        </div>
+      )}
 
       <div className="flex-container">
         <div className="macro-api-section section">
@@ -139,6 +169,9 @@ function MacroTracker() {
           ))}
         </div>
       </div>
+      <div className="water-tracker-section section">
+  <WaterTracker />
+</div>
     </div>
   );
 }

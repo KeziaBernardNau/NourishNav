@@ -20,6 +20,7 @@ export const Macrotrackerapi = ({ onAdd }) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      console.log(data)
       setNutrition(data.items[0]);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -63,22 +64,32 @@ export const Macrotrackerapi = ({ onAdd }) => {
         </select>
         <button
           className="btn btn-success"
+          onClick={handleSubmit}
           type="submit">
           Search
         </button>
-      </form>
-      {nutrition && (
-        <div style={{ color: "#1d5d24" }}>
+        {nutrition && (
+        <div>
           <ul style={{ listStyleType: "none", padding: 0 }}>
-            {/* Nutrition information list items omitted for brevity */}
+            <li>Food Item: {nutrition.name}</li>
+            <li>Calories: {nutrition.calories}</li>
+            <li>Serving Size: {nutrition.serving_size_g} g</li>
+            <li>Fat: {nutrition.fat_total_g} g</li>
+            <li>Sugar: {nutrition.sugar_g} g</li>
+            <li>Fiber: {nutrition.fiber_g} g</li>
+            <li>Protein: {nutrition.protein_g} g</li>
+            <li>Cholesterol: {nutrition.cholesterol_mg} mg</li>
+            <li>Carbohydrates: {nutrition.carbohydrates_total_g} g</li>
+            <li>Saturated Fat: {nutrition.fat_saturated_g} g</li>
+            <li>Sodium: {nutrition.sodium_mg} mg</li>
           </ul>
-          <button
-            className="btn btn-success"
-            onClick={() => onAdd(nutrition, mealType)}>
+          <button onClick={() => onAdd(nutrition, mealType)} className="btn btn-success">
             Add to Meal
           </button>
         </div>
       )}
+      </form>
+      
     </div>
   );
 };

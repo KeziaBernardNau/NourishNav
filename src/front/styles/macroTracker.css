@@ -7,6 +7,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+  background-image: url("https://i.ibb.co/9Tt5w6g/macro3.png");
+  background-repeat: no-repeat;
 }
 
 .total-calories-container {
@@ -29,10 +31,10 @@
   flex: 1;
   margin: 0 10px;
   padding: 20px;
-  border-radius: 8px; /* Softer corners */
-  background-color: #f9f9f9; /* Slightly off-white for a modern, clean look */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
 }
 
 .section:hover {
@@ -50,19 +52,19 @@
 h2 {
   text-align: center;
   color: #2e8540; /* Rich green */
-  font-family: 'Arial', sans-serif; /* Modern, readable font */
+  font-family: "Arial", sans-serif;
 }
 
 .meal-container {
   margin-bottom: 20px;
-  border-radius: 8px; /* Softer corners */
-  background-color: #fff; /* Pure white for contrast */
+  border-radius: 8px;
+  background-color: #fff;
   padding: 15px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .meal-name {
-  font-size: 20px; /* Slightly larger for emphasis */
+  font-size: 20px;
   font-weight: bold;
   margin-bottom: 15px;
   color: #2e8540; /* Rich green */
@@ -70,35 +72,40 @@ h2 {
 
 .food-item input {
   margin-right: 10px;
-  border-radius: 8px; /* Softer corners */
+  border-radius: 8px;
   border: 1px solid #ccc;
   padding: 8px 15px;
-  width: calc(100% - 24px); /* Full-width input fix */
+  width: calc(100% - 24px);
 }
 
-.food-item button, .modal-footer button {
+.food-item button,
+.modal-footer button {
   border: none;
-  background-color: #2e8540; /* Darker green */
+  background-color: #2e8540;
   color: white;
   padding: 8px 15px;
-  border-radius: 8px; /* Softer corners */
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  transition: background-color 0.3s ease;
 }
 
-.food-item button:hover, .modal-footer button:hover {
-  background-color: #1d5d24; /* Darker shade of green on hover */
+.food-item button:hover,
+.modal-footer button:hover {
+  background-color: #1d5d24;
 }
 
 .list-group-item {
-  background-color: #f9f9f9; /* Light gray for contrast */
+  background-color: #f9f9f9;
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 5px; /* Space between items */
+  margin-bottom: 5px;
 }
 
-#total-calories, .meal-icon, .meal-info, .meal-details {
-  color: #2e8540; /* Consistent green accent */
+#total-calories,
+.meal-icon,
+.meal-info,
+.meal-details {
+  color: #2e8540;
 }
 
 .no-bullets {
@@ -151,4 +158,55 @@ h2 {
 
 .salmon-button:hover {
   background-color: darksalmon;
+}
+
+.react-calendar {
+  width: 100%;
+  max-width: 350px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.react-calendar__navigation button {
+  color: #2e8540;
+  min-width: 44px;
+  background: none;
+  font-size: 16px;
+}
+
+.react-calendar__navigation button:enabled:hover,
+.react-calendar__navigation button:enabled:focus {
+  background-color: #e6e6e6;
+}
+
+.react-calendar__month-view__days__day--weekend {
+  color: #d10000;
+}
+
+.react-calendar__tile:enabled:hover,
+.react-calendar__tile:enabled:focus {
+  background: #e6e6e6;
+  color: #2e8540;
+  border-radius: 8px;
+}
+
+.react-calendar__tile--active {
+  background: #2e8540;
+  color: white;
+  border-radius: 8px;
+}
+.water-tracker-section {
+  flex: 1;
+  margin-top: 20px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.water-tracker-section:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
