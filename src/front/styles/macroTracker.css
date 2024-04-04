@@ -1,4 +1,5 @@
 .macro-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -7,8 +8,31 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
+
   background-image: url("https://i.ibb.co/9Tt5w6g/macro3.png");
   background-repeat: no-repeat;
+}
+
+.bottom-right-image-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  background-image: url("https://i.ibb.co/1JVB76h/macro4.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  z-index: -1;
+}
+
+.macros-info-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border-radius: 8px;
 }
 
 .total-calories-container {
@@ -17,13 +41,13 @@
 
 .total-calories-circle {
   display: inline-block;
-  width: 120px;
-  height: 120px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   background-color: #2e8540;
   color: white;
-  font-size: 36px;
-  line-height: 120px;
+  font-size: 48px;
+  line-height: 200px;
   margin-bottom: 10px;
 }
 
@@ -148,6 +172,15 @@ h2 {
 
 .list-group-item:last-child {
   border-bottom: none;
+}
+
+.btn-salmon {
+  background-color: salmon;
+  color: white;
+}
+
+.btn-salmon:hover {
+  background-color: darksalmon;
 }
 
 .salmon-button {

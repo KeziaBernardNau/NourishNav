@@ -34,9 +34,9 @@ export const Macrotrackerapi = ({ onAdd }) => {
   };
 
   return (
-    <div style={{ minHeight: "50%", background: "#f0e68c", padding: "20px" }}>
+    <div style={{ minHeight: "50%", background: "#2e8540", padding: "20px" }}>
       <form onSubmit={handleSubmit}>
-      <div style={{ color: "#1d5d24", padding: "10px", fontSize: "24px", fontWeight: "bold" }}>Macro Tracker</div>
+      <div style={{ color: "white", padding: "10px", fontSize: "24px", fontWeight: "bold" }}>Macro Tracker</div>
 
         <div className="input-group mb-3">
           <input
@@ -47,7 +47,7 @@ export const Macrotrackerapi = ({ onAdd }) => {
             placeholder="Search for food"
           />
           <button
-            className="btn btn-success"
+            className="btn btn-salmon"
             type="button"
             onClick={clearInput}>
             X
@@ -62,15 +62,19 @@ export const Macrotrackerapi = ({ onAdd }) => {
           <option value="dinner">Dinner</option>
           <option value="snack">Snack</option>
         </select>
+        <div style={{ marginTop: 'auto', textAlign: 'right' }}>
         <button
-          className="btn btn-success"
+          className="btn btn-salmon"
           onClick={handleSubmit}
-          type="submit">
+          type="submit"
+        >
           Search
         </button>
+      </div>
+
         {nutrition && (
         <div>
-          <ul style={{ listStyleType: "none", padding: 0 }}>
+          <ul style={{ listStyleType: "none", padding: 0, color: "white"}}>
             <li>Food Item: {nutrition.name}</li>
             <li>Calories: {nutrition.calories}</li>
             <li>Serving Size: {nutrition.serving_size_g} g</li>
@@ -83,7 +87,7 @@ export const Macrotrackerapi = ({ onAdd }) => {
             <li>Saturated Fat: {nutrition.fat_saturated_g} g</li>
             <li>Sodium: {nutrition.sodium_mg} mg</li>
           </ul>
-          <button onClick={() => onAdd(nutrition, mealType)} className="btn btn-success">
+          <button onClick={() => onAdd(nutrition, mealType)} className="btn btn-salmon">
             Add to Meal
           </button>
         </div>

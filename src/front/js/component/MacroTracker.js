@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../styles/macroTracker.css";
 import { Macrotrackerapi } from "../component/macrotrackerapi";
@@ -6,6 +6,10 @@ import Calendar from 'react-calendar';
 import { format } from 'date-fns';
 import { WaterTracker } from "./WaterTracker";
 
+
+const calculateTotalCalories = (mealItems) => {
+  return mealItems.reduce((total, item) => total + (item.calories * item.quantity), 0);
+};
 
 function MacroTracker() {
   const [meals, setMeals] = useState({
@@ -24,9 +28,15 @@ function MacroTracker() {
   const [showCalendar, setShowCalendar] = useState(false);
   const [selectedDate, setSelectedDate] = useState(new Date());
 
+  useEffect(() => {
+    // Calculate total macros when meals change
+    const totalCalories = Object.values(meals).reduce((acc, meal) => acc + calculateTotalCalories(meal), 0);
+    setTotalMacros((prev) => ({ ...prev, calories: totalCalories }));
+  }, [meals]);
+
   const toggleCalendar = () => {
     setShowCalendar(!showCalendar); 
-    setSelectedDate(new Date()); // Update selected date to current date when toggling calendar
+    setSelectedDate(new Date()); 
   };
 
   const onChangeCalendar = (newDate) => {
@@ -48,48 +58,21 @@ function MacroTracker() {
       ...prevMeals,
       [mealType]: [...prevMeals[mealType], newFoodItem],
     }));
-
-    setTotalMacros((prev) => ({
-      calories: Math.round(prev.calories + nutrition.calories),
-      protein: Math.round(prev.protein + nutrition.protein_g),
-      fat: Math.round(prev.fat + nutrition.fat_total_g),
-      carbohydrates: Math.round(prev.carbohydrates + nutrition.carbohydrates_total_g),
-    }));
-  };
-
-  const toggleMealType = (mealType) => {
-    setSelectedMealType(selectedMealType === mealType ? "" : mealType);
   };
 
   const handleDeleteFood = (mealType, itemId, itemQuantity) => {
-    const itemToDelete = meals[mealType].find(item => item.id === itemId);
     setMeals((prevMeals) => ({
       ...prevMeals,
       [mealType]: prevMeals[mealType].filter((item) => item.id !== itemId),
     }));
-    setTotalMacros((prev) => ({
-      calories: Math.round(prev.calories - (itemToDelete.calories * itemQuantity)),
-      protein: Math.round(prev.protein - (itemToDelete.protein * itemQuantity)),
-      fat: Math.round(prev.fat - (itemToDelete.fat * itemQuantity)),
-      carbohydrates: Math.round(prev.carbohydrates - (itemToDelete.carbohydrates * itemQuantity)),
-    }));
   };
 
   const handleEditFood = (mealType, itemId, newQuantity) => {
-    const itemToEdit = meals[mealType].find(item => item.id === itemId);
-    const oldQuantity = itemToEdit.quantity;
     setMeals((prevMeals) => ({
       ...prevMeals,
       [mealType]: prevMeals[mealType].map((item) =>
         item.id === itemId ? { ...item, quantity: newQuantity } : item
       ),
-    }));
-
-    setTotalMacros((prev) => ({
-      calories: Math.round(prev.calories - (itemToEdit.calories * oldQuantity) + (itemToEdit.calories * newQuantity)),
-      protein: Math.round(prev.protein - (itemToEdit.protein * oldQuantity) + (itemToEdit.protein * newQuantity)),
-      fat: Math.round(prev.fat - (itemToEdit.fat * oldQuantity) + (itemToEdit.fat * newQuantity)),
-      carbohydrates: Math.round(prev.carbohydrates - (itemToEdit.carbohydrates * oldQuantity) + (itemToEdit.carbohydrates * newQuantity)),
     }));
   };
 
@@ -99,10 +82,10 @@ function MacroTracker() {
         <div className="total-calories-circle">
           {totalMacros.calories}
         </div>
-        <p style={{ fontSize: '24px', fontWeight: 'bold' }}>Total Calories</p>
+        <p style={{ fontSize: '28px', fontWeight: 'bold' }}>Total Calories</p>
       </div>
 
-      <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap' }}>
+      <div className="macros-info-container">
         <h5 style={{ margin: 0, padding: '0 10px' }}>Calories: {totalMacros.calories}</h5>
         <h5 style={{ margin: 0, padding: '0 10px' }}>Protein: {totalMacros.protein}g</h5>
         <h5 style={{ margin: 0, padding: '0 10px' }}>Fat: {totalMacros.fat}g</h5>
@@ -111,7 +94,7 @@ function MacroTracker() {
 
       <div className="calendar-control" onClick={toggleCalendar}>
         <button className="btn btn-success">
-          {format(selectedDate, "MMMM d, yyyy")} {/* Display current or selected date */}
+          {format(selectedDate, "MMMM d, yyyy")} 
         </button>
       </div>
 
@@ -138,10 +121,10 @@ function MacroTracker() {
           {["breakfast", "lunch", "dinner", "snack"].map((mealType) => (
             <div key={mealType} className="meal-type-row">
               <button
-                onClick={() => toggleMealType(mealType)}
+                onClick={() => setSelectedMealType(mealType)}
                 className="meal-type-button"
               >
-                {mealType.charAt(0).toUpperCase() + mealType.slice(1)}
+                {mealType.charAt(0).toUpperCase() + mealType.slice(1)} - Total Calories: {calculateTotalCalories(meals[mealType])}
               </button>
               {selectedMealType === mealType && (
                 <div className="meal-details-container">
@@ -159,7 +142,6 @@ function MacroTracker() {
                           />
                         </div>
                         <button onClick={() => handleDeleteFood(mealType, item.id, item.quantity)} className="btn salmon-button"><i class="fa-solid fa-x"></i></button>
-
                       </li>
                     ))}
                   </ul>
@@ -170,8 +152,9 @@ function MacroTracker() {
         </div>
       </div>
       <div className="water-tracker-section section">
-  <WaterTracker />
-</div>
+        <WaterTracker />
+      </div>
+      <div className="bottom-right-image-container"></div>
     </div>
   );
 }
