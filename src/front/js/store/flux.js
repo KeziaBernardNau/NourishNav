@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       user: null,
       favorites: [],
+      saveDiet: {},
     },
     actions: {
       addFavorites: async (fav) => {
@@ -203,10 +204,17 @@ const getState = ({ getStore, getActions, setStore }) => {
           setStore({ token: token });
         }
       },
+
+
+    CreateDietPlan: (diet) => {
+      setStore ({saveDiet: diet})
+    }
     },
   };
 };
 
+
+    
 export default getState;
 
 

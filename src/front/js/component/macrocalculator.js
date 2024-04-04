@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export const Macrocalculator = () => {
     const [result, setResult] = useState(null);
     const [error, setError] = useState(null);
+    const [dietType, setDietType] = useState("");
 
     const [userInput, setUserInput] = useState({
         age: '',
@@ -49,6 +50,51 @@ export const Macrocalculator = () => {
         }));
     };
 
+    let content = null;
+
+    if (result) {
+        content = (
+            <div>
+                {dietType === "balance" && (
+                    <div>
+                        <p>Calorie Recommendation: {result.data?.calorie.toFixed(2) ?? 'N/A'} calories/day</p>
+                        <h4>Balanced Diet:</h4>
+                        <p>Protein: {result.data?.balanced?.protein.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Fat: {result.data?.balanced?.fat.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Carbs: {result.data?.balanced?.carbs.toFixed(2) ?? 'N/A'} grams</p>
+                    </div>
+                )}
+                {dietType === "highProtein" && (
+                    <div>
+                        <p>Calorie Recommendation: {result.data?.calorie.toFixed(2) ?? 'N/A'} calories/day</p>
+                        <h4>High Protein Diet:</h4>
+                        <p>Protein: {result.data?.highprotein?.protein.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Fat: {result.data?.highprotein?.fat.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Carbs: {result.data?.highprotein?.carbs.toFixed(2) ?? 'N/A'} grams</p>
+                    </div>
+                )}
+                {dietType === "lowCarb" && (
+                    <div>
+                        <p>Calorie Recommendation: {result.data?.calorie.toFixed(2) ?? 'N/A'} calories/day</p>
+                        <h4>Low Carbs Diet:</h4>
+                        <p>Protein: {result.data?.lowcarbs?.protein.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Fat: {result.data?.lowcarbs?.fat.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Carbs: {result.data?.lowcarbs?.carbs.toFixed(2) ?? 'N/A'} grams</p>
+                    </div>
+                )}
+                {dietType === 'lowFat' && (
+                    <div>
+                        <p>Calorie Recommendation: {result.data?.calorie.toFixed(2) ?? 'N/A'} calories/day</p>
+                        <h4>Low Fat Diet:</h4>
+                        <p>Protein: {result.data?.lowfat?.protein.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Fat: {result.data?.lowfat?.fat.toFixed(2) ?? 'N/A'} grams</p>
+                        <p>Carbs: {result.data?.lowfat?.carbs.toFixed(2) ?? 'N/A'} grams</p>
+                    </div>
+                )}
+            </div>
+        );
+    }
+
     return (
         <div>
             <div id="macro" style={{ padding: "20px", border: "2px solid black", borderRadius: "10px", background: "beige" }}>
@@ -61,44 +107,42 @@ export const Macrocalculator = () => {
                 <select name="goal" value={userInput.goal} onChange={handleChange}>
                     <option value="">Select Goal</option>
                     <option value="maintain">Maintain Weight</option>
-                    <option value="mildlose">Mild Weight Loss</option> {/* Updated */}
-                    <option value="weightlose">Weight Loss</option> {/* Updated */}
+                    <option value="mildlose">Mild Weight Loss</option>
+                    <option value="weightlose">Weight Loss</option>
                     <option value="extremelose">Extreme Weight Loss</option>
-                    <option value="mildgain">Mild Weight Gain</option> {/* Updated */}
-                    <option value="weightgain">Weight Gain</option> {/* Updated */}
-                    <option value="extremegain">Extreme Weight Gain</option> {/* Updated */}
+                    <option value="mildgain">Mild Weight Gain</option>
+                    <option value="weightgain">Weight Gain</option>
+                    <option value="extremegain">Extreme Weight Gain</option>
                 </select>
-                <button onClick={fetchData}>Calculate</button>
+                <select name="dietType" value={dietType} onChange={(e) => setDietType(e.target.value)}>
+                    <option value="">Select Diet</option>
+                    <option value="balance">Balanced Diet</option>
+                    <option value="highProtein">High Protein Diet</option>
+                    <option value="lowCarb">Low Carbs Diet</option>
+                    <option value="lowFat">Low Fat Diet</option>
+                </select>
+                <button onClick={fetchData} type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Calculate
+                </button>
             </div>
-            {result && (
-                <div>
-                    <h3>Results:</h3>
-                    {/* Display the overall calorie recommendation */}
-                    <p>Calorie Recommendation: {result.data?.calorie.toFixed(2) ?? 'N/A'} calories/day</p>
-
-                    {/* Display macronutrient distribution for a balanced diet */}
-                    <h4>Balanced Diet:</h4>
-                    <p>Protein: {result.data?.balanced?.protein.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Fat: {result.data?.balanced?.fat.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Carbs: {result.data?.balanced?.carbs.toFixed(2) ?? 'N/A'} grams</p>
-
-                    {/* Repeat for other diet types */}
-                    <h4>High Protein Diet:</h4>
-                    <p>Protein: {result.data?.highprotein?.protein.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Fat: {result.data?.highprotein?.fat.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Carbs: {result.data?.highprotein?.carbs.toFixed(2) ?? 'N/A'} grams</p>
-
-                    <h4>Low Carbs Diet:</h4>
-                    <p>Protein: {result.data?.lowcarbs?.protein.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Fat: {result.data?.lowcarbs?.fat.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Carbs: {result.data?.lowcarbs?.carbs.toFixed(2) ?? 'N/A'} grams</p>
-
-                    <h4>Low Fat Diet:</h4>
-                    <p>Protein: {result.data?.lowfat?.protein.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Fat: {result.data?.lowfat?.fat.toFixed(2) ?? 'N/A'} grams</p>
-                    <p>Carbs: {result.data?.lowfat?.carbs.toFixed(2) ?? 'N/A'} grams</p>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Result</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            {content}
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </div>
                 </div>
-            )}
+            </div>
+
             {error && (
                 <div style={{ color: "red" }}>
                     <p>{error}</p>
