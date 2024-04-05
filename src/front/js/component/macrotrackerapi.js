@@ -20,6 +20,7 @@ export const Macrotrackerapi = ({ onAdd }) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
+      console.log(data)
       setNutrition(data.items[0]);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -27,29 +28,53 @@ export const Macrotrackerapi = ({ onAdd }) => {
     }
   };
 
+  const clearInput = () => {
+    setQuery(""); // Clear the query state
+    setNutrition(null); // Clear the nutrition state
+  };
+
   return (
-    <div style={{ minHeight: "50vh", background: "beige", padding: "20px" }}>
+    <div style={{ minHeight: "50%", background: "#2e8540", padding: "20px" }}>
       <form onSubmit={handleSubmit}>
-        <div>Macro Tracker: Enter food here</div>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search for food"
-        />
-        <select value={mealType} onChange={(e) => setMealType(e.target.value)}>
+      <div style={{ color: "white", padding: "10px", fontSize: "24px", fontWeight: "bold" }}>Macro Tracker</div>
+
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search for food"
+          />
+          <button
+            className="btn btn-salmon"
+            type="button"
+            onClick={clearInput}>
+            X
+          </button>
+        </div>
+        <select
+          className="form-select mb-3"
+          value={mealType}
+          onChange={(e) => setMealType(e.target.value)}>
           <option value="breakfast">Breakfast</option>
           <option value="lunch">Lunch</option>
           <option value="dinner">Dinner</option>
           <option value="snack">Snack</option>
         </select>
-        <button className="btn btn-primary" type="submit">
+        <div style={{ marginTop: 'auto', textAlign: 'right' }}>
+        <button
+          className="btn btn-salmon"
+          onClick={handleSubmit}
+          type="submit"
+        >
           Search
         </button>
-      </form>
-      {nutrition && (
+      </div>
+
+        {nutrition && (
         <div>
-          <ul style={{ listStyleType: "none", padding: 0 }}>
+          <ul style={{ listStyleType: "none", padding: 0, color: "white"}}>
             <li>Food Item: {nutrition.name}</li>
             <li>Calories: {nutrition.calories}</li>
             <li>Serving Size: {nutrition.serving_size_g} g</li>
@@ -62,11 +87,13 @@ export const Macrotrackerapi = ({ onAdd }) => {
             <li>Saturated Fat: {nutrition.fat_saturated_g} g</li>
             <li>Sodium: {nutrition.sodium_mg} mg</li>
           </ul>
-          <button onClick={() => onAdd(nutrition, mealType)}>
+          <button onClick={() => onAdd(nutrition, mealType)} className="btn btn-salmon">
             Add to Meal
           </button>
         </div>
       )}
+      </form>
+      
     </div>
   );
 };

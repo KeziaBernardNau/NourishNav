@@ -73,11 +73,17 @@
 		]
 	},
 	"dependencies": {
+		"@fortawesome/fontawesome-svg-core": "^6.5.2",
+		"@fortawesome/free-solid-svg-icons": "^6.5.2",
+		"@fortawesome/react-fontawesome": "^0.2.0",
 		"bcrypt": "^5.1.1",
 		"bootstrap": "^5.3.3",
+		"calendar": "^0.1.1",
+		"date-fns": "^3.6.0",
 		"prop-types": "^15.6.1",
-		"react": "^16.8.4",
+		"react": "^16.14.0",
 		"react-bootstrap": "^2.10.2",
+		"react-calendar": "^4.8.0",
 		"react-dom": "^16.8.4",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0"
