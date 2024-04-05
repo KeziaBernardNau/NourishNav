@@ -1,4 +1,4 @@
-.login {
+.signup {
   display: flex;
   justify-content: flex-end; 
   align-items: center; 
@@ -8,19 +8,19 @@
   overflow: hidden;
 }
 
-.login-background {
+.sign-background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 50%;
   height: 100%;
-  background-image: url("https://i.ibb.co/yQy96Kb/i-Stock-1022091376.jpg");
+  background-image: url("https://i.ibb.co/yV9rFmW/i-Stock-871339902.jpg");
   background-size: cover;
   background-position: left; 
   z-index: 0; 
 }
 
-.login-overlay {
+.signup-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -29,7 +29,7 @@
   z-index: 1;
 }
 
-.login-content {
+.signup-content {
   position: relative;
   z-index: 2;
   display: flex;
@@ -43,25 +43,25 @@
 .banner-title {
   font-size: 3rem;
   margin-bottom: 20px;
-  color: rgb( 29,59,42 );
+  color: #ffffff;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-/* Input fields */
 .input-field {
   margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 250px; 
+  display: inline-block;
 }
+
 
 
 .error-message {
   color: red;
   margin-top: 10px;
 }
-
 
 .btn {
   display: inline-block;
@@ -78,7 +78,6 @@
 .btn:hover {
   background-color: rgb(241, 113, 90);
 }
-
 
 .link-button {
   margin-top: 20px;

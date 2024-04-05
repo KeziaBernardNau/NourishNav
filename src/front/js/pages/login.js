@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-import "../../styles/loginpage.css";
 import { Context } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
+import "../../styles/loginpage.css"; 
 
 export default function Login() {  
   const { store, actions } = useContext(Context);
@@ -15,35 +15,47 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-        await actions.login({ email, password });
-        navigate('/profile'); 
+      await actions.login({ email, password });
+      navigate('/profile'); 
     } catch (error) {
-        setError(error.message);
+      setError(error.message);
     }
-};
+  };
 
-  
-
- 
-    return (
+  return (
+    <div className="container">
       <form onSubmit={handleSubmit}>
-        <h1 className="">Login</h1>
-        <input
-          type="text"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setemail(e.target.value)}
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Login</button>
-        <button>
-          <Link to="/forgot">Forgot Password</Link>
-        </button>
+        <div className="login">
+          <div className="login-background"></div>
+          <div className="login-overlay" ></div>
+          <div className="login-content" style={{ marginLeft: "20%" }}>
+            <h1 className="banner-title">Login</h1>
+            <div className="input-group" >
+              <input
+                className="input-field"
+                type="text"
+                placeholder="Email"
+                value={email}
+                onChange={(e) => setemail(e.target.value)}
+              />
+            </div>
+            <div className="input-group" >
+              <input
+                className="input-field"
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            {error && <p className="error-message">{error}</p>}
+            <button className="btn" type="submit">Login</button>
+            <div className="link-button">
+              <Link to="/forgot">Forgot Password</Link>
+            </div>
+          </div>
+        </div>
       </form>
-    );
+    </div>
+  );
 }

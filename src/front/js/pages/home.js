@@ -15,7 +15,7 @@ export const Home = () => {
     const handleLogin = async () => {
         try {
             await actions.login({ email, password });
-            navigate("/macro"); // Navigate after a successful login
+            navigate("/profile"); // Navigate after a successful login
         } catch (error) {
             setLoginError(error.message); // Set login error to be displayed in UI
         }

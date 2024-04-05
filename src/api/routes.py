@@ -30,17 +30,18 @@ def createUser():
     age = request.json.get("age")
     height = request.json.get("height")
     weight = request.json.get("weight")
-    activity_level = request.json.get("activity_level")
+    activity_level = request.json.get("activityLevel")
     user = User.query.filter_by(email=email).first()
     if user != None:
         return jsonify({"msg": "email exists"}), 401
-    user = User(password=password, email = email, age = age, height= height, weight = weight, activity_level = activity_level)
+    user = User(password=password, email = email, age = age, height= height, weight = weight, activity_level = activity_level, profile_picture = "")
     db.session.add(user)
     db.session.commit()
     response_body = {
         "msg": "User successfully added "
     }
     return jsonify(response_body), 200
+
 @api.route('/private', methods=['GET'])
 @jwt_required()
 def protected():
@@ -66,6 +67,26 @@ def get_all_recipes():
         for recipe in recipes
     ]
     return jsonify(recipes_data)
+
+@api.route('/updateUser', methods=['PUT'])
+@jwt_required()
+def updateUser():
+    current_user_id = get_jwt_identity()
+    user = User.query.get(current_user_id)
+    email = request.json.get("email")
+    weight = request.json.get("weight")
+    activity_level = request.json.get("activityLevel")
+    profile_picture = request.json.get("profilePicture")
+
+    user = User(email = email, weight = weight, activity_level = activity_level, profile_picture = profile_picture )
+    db.session.update(user)
+    db.session.commit()
+    response_body = {
+        "msg": "User successfully updated "
+    }
+    return jsonify(response_body), 200
+
+
 @api.route('/recipes/<int:id>', methods=['GET'])
 def recipe_detail(id):
     recipe = Recipe.query.get(id)
@@ -80,6 +101,7 @@ def recipe_detail(id):
         })
     else:
         return jsonify({"error": "Recipe not found"}), 404
+    
 @api.route('/token', methods=['POST'])
 def create_token():
     email = request.json.get("email")
@@ -88,7 +110,7 @@ def create_token():
     if user is None:
         return jsonify({"msg": "Bad email or password"}), 401
     access_token = create_access_token(identity=user.id)
-    return jsonify({ "token": access_token, "user_id": user.id }) ,200
+    return jsonify({ "token": access_token, "user_id": user.id, "user": user.serialize() }) ,200
 # end of user related routes
 
 # start of favorites routes

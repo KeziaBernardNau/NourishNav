@@ -1,4 +1,3 @@
-// Updated flux with code from jasmin-recipe branch that was working upon import
 const apiUrl = process.env.BACKEND_URL;
 
 const getState = ({ getStore, getActions, setStore }) => {
@@ -8,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: null,
       user: null,
       favorites: [],
+      saveDiet: {},
     },
     actions: {
       addFavorites: async (fav) => {
@@ -64,19 +64,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       signUp: async (form, callback) => {
         try {
-          const response = await fetch(apiUrl + "/api/signup", {
+          const response = await fetch(`${apiUrl}/api/signup`, {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-              email: form.email,
-              password: form.password,
-              age: form.age,
-              height: form.height,
-              weight: form.weight,
-              activity_level: form.activity,
-            }),
+            body: JSON.stringify(form), 
           });
 
           if (!response.ok) {
@@ -84,7 +77,8 @@ const getState = ({ getStore, getActions, setStore }) => {
             throw new Error(errorBody.message || "Signup failed");
           }
 
-          await response.json();
+          const userData = await response.json(); 
+          setStore({ user: { ...userData, weight: form.weight, activity_level: form.activityLevel } });
 
           if (callback) callback();
         } catch (error) {
@@ -133,7 +127,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           fetch(apiUrl + "/api/private", {
             method: "GET",
             headers: {
-              Authorization: "Bearer " + getStore().token,
+              Authorization: "Bearer " + sessionStorage.getItem('token'),
             },
           })
             .then((resp) => {
@@ -152,16 +146,75 @@ const getState = ({ getStore, getActions, setStore }) => {
         });
       },
 
+
+      
+      fetchProfilePicture: async () => {
+        try {
+          const resp = await fetch(`${apiUrl}/api/profilePicture`, {
+            method: "GET",
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem('token'),
+          },
+       });
+          if (!resp.ok) {
+            throw new Error("Failed to fetch profile picture");
+          }
+          const data = await resp.json();
+    
+        return data.profile_picture;
+     } catch (error) {
+        console.error("Fetch profile picture error:", error);
+      throw error;
+    }
+  },
+
+      updateUser: async (email, weight, activityLevel, profilePicture) => {
+        try {
+          const fetchedProfilePicture = await getActions().fetchProfilePicture();
+          const resp = await fetch(`${apiUrl}/api/updateUser`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + sessionStorage.getItem('token'),
+              
+            },
+            body: JSON.stringify({
+              email: email,
+              weight: weight,
+              activity_level: activityLevel,
+              profile_picture: fetchedProfilePicture || profilePicture
+            }),
+          });
+          if (!resp.ok) {
+            
+            throw new Error("Cannot update user");
+          }
+          const data = await resp.json();
+          console.log(data,"user profile info")
+          return true;
+        } catch (error) {
+          console.error("Update error:", error);
+          
+          throw error;
+        }
+      },
       tokenFromStore: () => {
         const token = sessionStorage.getItem("token");
         if (token && token != null && token != undefined) {
           setStore({ token: token });
         }
       },
+
+
+    CreateDietPlan: (diet) => {
+      setStore ({saveDiet: diet})
+    }
     },
   };
 };
 
+
+    
 export default getState;
 
 

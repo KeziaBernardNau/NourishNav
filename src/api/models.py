@@ -11,6 +11,7 @@ class User(db.Model):
     height = db.Column(db.String(20), nullable=False)
     weight = db.Column(db.Integer, nullable=True)
     activity_level = db.Column(db.String(120), nullable=False)
+    profile_picture = db.Column(db.String(1500), nullable=True)
 
     def get_favorites(self):
         favorites = Favorites.query.filter_by(uid=self.id)
@@ -29,6 +30,7 @@ class User(db.Model):
             "height": self.height,
             "weight": self.weight,
             "activity_level": self.activity_level,
+            "profile_picture": self.profile_picture,
             "favorites": self.get_favorites(),
             # do not serialize the password, its a security breach
         }
@@ -50,8 +52,8 @@ class Favorites(db.Model):
             "recipe_name": self.recipe_name
         }
     
-    class Recipe(db.Model):
-      id = db.Column(db.Integer, primary_key=True)
+class Recipe(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(200), unique=True, nullable=False)
     description = db.Column(db.Text, nullable=False)
     ingredients = db.Column(db.Text, nullable=False)  
