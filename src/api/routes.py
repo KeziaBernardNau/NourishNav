@@ -25,16 +25,17 @@ CORS(api)
 
 @api.route('/signup', methods=['POST'])
 def createUser():
+    name = request.json.get("name")
     password = request.json.get("password")
     email = request.json.get("email")
     age = request.json.get("age")
     height = request.json.get("height")
     weight = request.json.get("weight")
-    activity_level = request.json.get("activityLevel")
+    activity_level = request.json.get("activity_level")
     user = User.query.filter_by(email=email).first()
     if user != None:
         return jsonify({"msg": "email exists"}), 401
-    user = User(password=password, email = email, age = age, height= height, weight = weight, activity_level = activity_level, profile_picture = "")
+    user = User(password=password, name = name,  email = email, age = age, height= height, weight = weight, activity_level = activity_level, profile_picture = "")
     db.session.add(user)
     db.session.commit()
     response_body = {

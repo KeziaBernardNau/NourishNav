@@ -78,7 +78,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           }
 
           const userData = await response.json(); 
-          setStore({ user: { ...userData, weight: form.weight, activity_level: form.activityLevel } });
+          setStore({ user: { ...userData, weight: form.weight, activity_level: form.activity_level, name: form.name } });
 
           if (callback) callback();
         } catch (error) {

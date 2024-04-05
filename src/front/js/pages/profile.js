@@ -24,9 +24,10 @@ const Private = () => {
     } else {
       setUserDetails(prevState => ({
         ...prevState,
+        name: store.user.name || "",
         email: store.user.email || "",
         weight: store.user.weight || "",
-        activityLevel: store.user.activityLevel || "",
+        activity_level: store.user.activity_level || "",
         profilePicture: store.user.profilePicture || "",
       }));
     }
@@ -35,7 +36,7 @@ const Private = () => {
 
 
   function updateUser() {
-    actions.updateUser(userDetails.email, userDetails.weight, userDetails.activityLevel, file)
+    actions.updateUser(userDetails.email, userDetails.weight, userDetails.activity_level, userDetails.name, file)
   }
   const handleFileChange = (e) => {
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -105,7 +106,7 @@ const Private = () => {
             }}>
               <div className="mb-3" style={{ width: "50%", paddingTop: "5px" }}>
                 <label htmlFor="exampleInputName1" className="form-label">Name</label>
-                <input type="email" className="form-control" id="exampleInputName" />
+                <input type="email" className="form-control" id="exampleInputName" value={userDetails.name} />
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <label htmlFor="exampleInputEmail1" className="form-label">Email</label>
@@ -121,7 +122,7 @@ const Private = () => {
               </div>
               <div className="mb-3" style={{ width: "50%" }}>
                 <label htmlFor="exampleInputActivityLevel1" className="form-label">Activity Level</label>
-                <select className="form-control" id="exampleInputActivityLevel" name="activityLevel" value={userDetails.activityLevel} onChange={handleChange}>
+                <select className="form-control" id="exampleInputActivityLevel" name="activity_level" value={userDetails.activity_level} onChange={handleChange}>
                   <option value="Very Active">Very Active</option>
                   <option value="Less">Less Active</option>
                   <option value="None">Not Active</option>

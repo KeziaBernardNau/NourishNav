@@ -8,17 +8,18 @@ export default function Signup() {
     const navigate = useNavigate();
 
     // State initialization
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [age, setAge] = useState("");
     const [height, setHeight] = useState("");
     const [weight, setWeight] = useState("");
-    const [activityLevel, setActivity] = useState("");
+    const [activity_level, setActivity] = useState("");
 
     const [loginError, setLoginError] = useState("");
 
     const handleSignup = async () => {
-        const form = { email, password, age, height, weight, activityLevel };
+        const form = { name, email, password, age, height, weight, activity_level };
         try {
             await actions.signUp(form, () => {
                 navigate("/login");
@@ -61,7 +62,7 @@ export default function Signup() {
                 </div>
                 <div className="input-group">
                     <p>Activity Level:</p>
-                    <select className="input-field" name="activityLevel" value={activityLevel} onChange={(e) => setActivity(e.target.value)}>
+                    <select className="input-field" name="activityLevel" value={activity_level} onChange={(e) => setActivity(e.target.value)}>
                         <option value="Very Active">Very Active</option>
                         <option value="Less">Less</option>
                         <option value="None">None</option>
