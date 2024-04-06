@@ -33,7 +33,7 @@ export default function Signup() {
             <div className="sign-background"></div>
             <div className="signup-overlay"></div>
             <div className="signup-content">
-                <h3 className="banner-title">Join Us</h3>
+                <h3 className="cta">Join Us</h3>
                 <p>Welcome! Join us by signing up below.</p>
                 <div className="input-group">
                     <p>Name</p>

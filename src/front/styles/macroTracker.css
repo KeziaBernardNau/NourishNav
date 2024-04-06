@@ -1,3 +1,10 @@
+#main-container {
+  background-image: url("https://i.ibb.co/F4Cnx2W/Untitled-design.png");
+  background-position: top right; 
+  /* background-repeat: no-repeat;  */
+  background-size: 80% auto; 
+}
+
 .macro-container {
   position: relative;
   display: flex;
@@ -8,8 +15,8 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-
-  background-image: url("https://i.ibb.co/9Tt5w6g/macro3.png");
+  background-image: url("https://i.ibb.co/F4Cnx2W/Untitled-design.png");
+  /* background-image: url("https://i.ibb.co/9Tt5w6g/macro3.png"); */
   background-repeat: no-repeat;
 }
 
@@ -19,7 +26,7 @@
   right: 0;
   width: 50%;
   height: 50%;
-  background-image: url("https://i.ibb.co/1JVB76h/macro4.png");
+  /* background-image: url("https://i.ibb.co/1JVB76h/macro4.png"); */
   background-repeat: no-repeat;
   background-size: cover;
   z-index: -1;
@@ -30,7 +37,7 @@
   justify-content: space-around;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #f9f9f9;
+  background-color: #fff23c;
   padding: 10px;
   border-radius: 8px;
 }
@@ -156,6 +163,11 @@ h2 {
 .meal-type-button:hover {
   background-color: #1d5d24;
 }
+
+.meal-type-button .icon {
+  font-size: 34px; /* Adjust the font size as desired */
+}
+
 
 .meal-details-container {
   margin-top: 10px;

@@ -5,6 +5,8 @@ import { Macrotrackerapi } from "../component/macrotrackerapi";
 import Calendar from 'react-calendar'; 
 import { format } from 'date-fns';
 import { WaterTracker } from "./WaterTracker";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee, faUtensils, faHamburger, faCookie } from '@fortawesome/free-solid-svg-icons';
 
 
 const calculateTotalCalories = (mealItems) => {
@@ -77,7 +79,8 @@ function MacroTracker() {
   };
 
   return (
-    <div className="macro-container">
+    <div id="main-container">
+     <div className="macro-container">
       <div className="total-calories-container">
         <div className="total-calories-circle">
           {totalMacros.calories}
@@ -86,10 +89,9 @@ function MacroTracker() {
       </div>
 
       <div className="macros-info-container">
-        <h5 style={{ margin: 0, padding: '0 10px' }}>Calories: {totalMacros.calories}</h5>
         <h5 style={{ margin: 0, padding: '0 10px' }}>Protein: {totalMacros.protein}g</h5>
         <h5 style={{ margin: 0, padding: '0 10px' }}>Fat: {totalMacros.fat}g</h5>
-        <h5 style={{ margin: 0, padding: '0 10px' }}>Carbohydrates: {totalMacros.carbohydrates}g</h5>
+        <h5 style={{ margin: 0, padding: '0 10px' }}>Carbs: {totalMacros.carbohydrates}g</h5>
       </div>
 
       <div className="calendar-control" onClick={toggleCalendar}>
@@ -118,44 +120,52 @@ function MacroTracker() {
         </div>
 
         <div className="food-entries-section section">
-          {["breakfast", "lunch", "dinner", "snack"].map((mealType) => (
-            <div key={mealType} className="meal-type-row">
-              <button
-                onClick={() => setSelectedMealType(mealType)}
-                className="meal-type-button"
-              >
-                {mealType.charAt(0).toUpperCase() + mealType.slice(1)} - Total Calories: {calculateTotalCalories(meals[mealType])}
-              </button>
-              {selectedMealType === mealType && (
-                <div className="meal-details-container">
-                  <ul className="list-group no-bullets">
-                    {meals[mealType].map((item) => (
-                      <li key={item.id} className="list-group-item">
-                        <div>
-                          <span>
-                            {item.foodItem} - {Math.round(item.calories * item.quantity)} calories, {Math.round(item.protein * item.quantity)}g protein, {Math.round(item.fat * item.quantity)}g fat, {Math.round(item.carbohydrates * item.quantity)}g carbohydrates
-                          </span>
-                          <input 
-                            type="number" 
-                            value={item.quantity} 
-                            onChange={(e) => handleEditFood(mealType, item.id, parseInt(e.target.value, 10))} 
-                          />
-                        </div>
-                        <button onClick={() => handleDeleteFood(mealType, item.id, item.quantity)} className="btn salmon-button"><i class="fa-solid fa-x"></i></button>
-                      </li>
-                    ))}
-                  </ul>
+  {[
+    { type: "breakfast", icon: faCoffee },
+    { type: "lunch", icon: faUtensils },
+    { type: "dinner", icon: faHamburger },
+    { type: "snack", icon: faCookie }
+  ].map((meal) => (
+    <div key={meal.type} className="meal-type-row">
+      <button
+        onClick={() => setSelectedMealType(meal.type)}
+        className="meal-type-button"
+      >
+        <FontAwesomeIcon icon={meal.icon} style={{ fontSize: '24px', marginRight: '5px' }} />
+        {meal.type.charAt(0).toUpperCase() + meal.type.slice(1)} - Total Calories: {calculateTotalCalories(meals[meal.type])}
+      </button>
+      {selectedMealType === meal.type && (
+        <div className="meal-details-container">
+          <ul className="list-group no-bullets">
+            {meals[meal.type].map((item) => (
+              <li key={item.id} className="list-group-item">
+                <div>
+                  <span>
+                    {item.foodItem} - {Math.round(item.calories * item.quantity)} calories, {Math.round(item.protein * item.quantity)}g protein, {Math.round(item.fat * item.quantity)}g fat, {Math.round(item.carbohydrates * item.quantity)}g carbohydrates
+                  </span>
+                  <input 
+                    type="number" 
+                    value={item.quantity} 
+                    onChange={(e) => handleEditFood(meal.type, item.id, parseInt(e.target.value, 10))} 
+                  />
                 </div>
-              )}
-            </div>
-          ))}
+                <button onClick={() => handleDeleteFood(meal.type, item.id, item.quantity)} className="btn salmon-button"><FontAwesomeIcon icon={faTimes} /></button>
+              </li>
+            ))}
+          </ul>
         </div>
+      )}
+    </div>
+  ))}
+</div>
       </div>
       <div className="water-tracker-section section">
         <WaterTracker />
       </div>
       <div className="bottom-right-image-container"></div>
+    </div> 
     </div>
+    
   );
 }
 
