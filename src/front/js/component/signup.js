@@ -8,6 +8,7 @@ export default function Signup() {
     const navigate = useNavigate();
 
     // State initialization
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [age, setAge] = useState("");
@@ -18,7 +19,7 @@ export default function Signup() {
     const [loginError, setLoginError] = useState("");
 
     const handleSignup = async () => {
-        const form = { email, password, age, height, weight, activityLevel };
+        const form = { name, email, password, age, height, weight, activityLevel };
         try {
             await actions.signUp(form, () => {
                 navigate("/login");
@@ -34,7 +35,7 @@ export default function Signup() {
             <div className="signup-overlay"></div>
             <div className="signup-content">
                 <h3 className="cta">Join Us</h3>
-                <p>Welcome! Join us by signing up below.</p>
+                <p style={{ color: 'white' }}>Welcome! Join us by signing up below.</p>
                 <div className="input-group">
                     <p>Name</p>
                     <input type="name" className="input-field" name="name" onChange={(e) => setName(e.target.value)} value={name} />

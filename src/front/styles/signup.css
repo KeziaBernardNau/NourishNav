@@ -4,8 +4,9 @@
   align-items: center; 
   position: relative;
   height: 100vh;
-  background-color: mintcream;
+  background-color: #D1FA98;
   overflow: hidden;
+  padding: 32px;
 }
 
 .sign-background {
@@ -19,6 +20,18 @@
   background-position: left; 
   z-index: 0; 
 }
+/* .sign-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 100%;
+  background-image: url("https://i.ibb.co/9Tt5w6g/macro3.png");
+  background-size: cover;
+  background-position: center left; /* Adjusted background-position */
+  /* z-index: 0; */
+/* } */
+ */
 
 .signup-overlay {
   position: absolute;
@@ -38,25 +51,37 @@
   align-items: center;
   height: 100%;
   padding: 0 20px;
+  margin-top: 62px;
+  margin-right: 80px;
+  margin-bottom: 60px;
 }
 
 .cta {
   font-size: 3rem;
   margin-bottom: 20px;
-  color: #ffffff;
+  margin-top: 10px; /* Adjusted margin-top value */
+  color: #2e8540;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5px; /* Adjusted margin-bottom value */
+}
+
+.input-group p {
+  margin-bottom: 5px;
+}
+
 .input-field {
-  margin-bottom: 10px;
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
   width: 250px; 
-  display: inline-block;
 }
-
-
 
 .error-message {
   color: red;
