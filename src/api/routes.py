@@ -13,6 +13,9 @@ from flask_cors import CORS
 from flask_bcrypt import Bcrypt  # Add this import for Bcrypt
 from flask_mail import Mail
 from flask_mail import Message
+from datetime import datetime, timedelta
+import requests
+import os
 
 
 api = Blueprint('api', __name__)
@@ -185,4 +188,39 @@ def handle_contact_form():
             "message": "Your message has been successfully submitted. We will get back to you soon!"
         }
         return jsonify(response_body), 200
+
+
+
+@api.route('/forgotPassword', methods=['POST'])
+def forgotPassword():
+    # Extract data from the request
+    email = request.json.get('email')
+    user = User.query.filter_by(email = email ).first()
+    if user is not None: 
+        expiration = timedelta(days = 1)
+        access_token = create_access_token(identity = user.id, expires_delta= expiration)
+        email = user.email 
+        message = "Click this link to change password." + os.getenv("Frontend_url") + "/updatePassword?token="+str(access_token)
+
+        reponse= requests.post(
+            #This is where you put your mail gun API,
+            auth=("api", os.getenv("mailGunApi")),
+            data={"from":"",
+                  "to":email,
+                  "subject":"Password Recovery for NourishNav",
+                  "text":message})
+        return jsonify("Recovery email sent."), 400
+    
+
+@api.route('/recoverPassword', methods=['POST'])
+@jwt_required()
+def recoverPassword():
+    body= request.get_json()
+    id= get_jwt_identity()
+    user= User.query.filter_by(id=id).first()
+    password=body.get("password")
+    if user is not None:
+        user.password=password
+        db.session.commit()
+        return jsonify("Password updated"), 400
 
