@@ -200,12 +200,12 @@ def forgotPassword():
         expiration = timedelta(days = 1)
         access_token = create_access_token(identity = user.id, expires_delta= expiration)
         email = user.email 
-        message = "Click this link to change password." + os.getenv("Frontend_url") + "/updatePassword?token="+str(access_token)
+        message = "Click this link to change password." + os.getenv("https://ominous-lamp-wr7w9jrjxjxvhgvv7-3000.app.github.dev/") + "/updatePassword?token="+str(access_token)
 
         reponse= requests.post(
-            #This is where you put your mail gun API,
+            "https://app.mailgun.com/app/sending/domains/sandbox2e449a0271734fd480f27573adb09bed.mailgun.org",
             auth=("api", os.getenv("mailGunApi")),
-            data={"from":"",
+            data={"from":"NourishNav.pw.recovery.sandbox2e449a0271734fd480f27573adb09bed.mailgun.org",
                   "to":email,
                   "subject":"Password Recovery for NourishNav",
                   "text":message})

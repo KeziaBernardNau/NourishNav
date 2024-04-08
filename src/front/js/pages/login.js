@@ -51,7 +51,7 @@ export default function Login() {
             {error && <p className="error-message">{error}</p>}
             <button className="btn" type="submit">Login</button>
             <div className="link-button">
-              <Link to="/forgot">Forgot Password</Link>
+              <Link to="/ForgotPassword">Forgot Password</Link>
             </div>
           </div>
         </div>
