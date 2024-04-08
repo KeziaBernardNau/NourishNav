@@ -16,7 +16,13 @@ from flask_mail import Message
 from datetime import datetime, timedelta
 import requests
 import os
-
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import uuid
+from urllib.parse import quote
+import smtplib
+import ssl
+from email.message import EmailMessage
 
 api = Blueprint('api', __name__)
 
@@ -191,26 +197,71 @@ def handle_contact_form():
 
 
 
-@api.route('/forgotPassword', methods=['POST'])
-def forgotPassword():
-    # Extract data from the request
-    email = request.json.get('email')
-    user = User.query.filter_by(email = email ).first()
-    if user is not None: 
-        expiration = timedelta(days = 1)
-        access_token = create_access_token(identity = user.id, expires_delta= expiration)
-        email = user.email 
-        message = "Click this link to change password." + os.getenv("https://ominous-lamp-wr7w9jrjxjxvhgvv7-3000.app.github.dev/") + "/updatePassword?token="+str(access_token)
+@api.route('/forgotpassword', methods=['POST'])
+def forgotpassword():
+    try:
+        body = request.get_json()
+        email = body.get("email")
 
-        reponse= requests.post(
-            "https://app.mailgun.com/app/sending/domains/sandbox2e449a0271734fd480f27573adb09bed.mailgun.org",
-            auth=("api", os.getenv("mailGunApi")),
-            data={"from":"NourishNav.pw.recovery.sandbox2e449a0271734fd480f27573adb09bed.mailgun.org",
-                  "to":email,
-                  "subject":"Password Recovery for NourishNav",
-                  "text":message})
-        return jsonify("Recovery email sent."), 400
-    
+        if not email:
+            print("No email was provided")
+            return jsonify({"message": "No email was provided"}), 400
+
+        user = User.query.filter_by(email=email).first()
+        if not user:
+            print("User doesn't exist")
+            return jsonify({"message": "User doesn't exist"}), 404
+
+        # Generate a reset token
+        reset_token = str(uuid.uuid4())
+        user.reset_token = quote(reset_token)
+        db.session.commit()
+
+        expiration_time = datetime.utcnow() + timedelta(hours=1)
+        payload = {
+            'email': email,
+            'exp': expiration_time.timestamp(), 
+            'reset_token': quote(reset_token)
+        }
+        access_token = create_access_token(identity=payload)
+
+        # Email configuration
+        FRONTEND_URL = os.getenv('FRONTEND_URL')
+        SENDGRID_API_KEY = os.getenv('SENDGRID_API_KEY')
+        URL_TOKEN = f"{FRONTEND_URL}/recoverPassword?token={access_token}"
+
+        email_receiver = email
+        email_subject = "Reset Your Password for NourishNav"
+        email_body = (
+            f"Hello,\n\nYou requested a password reset for your NourishNav account. "
+            f"If you did not request this, please ignore this email.\n\n"
+            f"Please use the following link to reset your password:\n{URL_TOKEN}\n\n"
+            f"This link is valid for 1 hour. After that, you will need to request a new password reset.\n\n"
+            f"Sincerely,\nThe NourishNav Team"
+        )
+
+        message = EmailMessage()
+        message.set_content(email_body)
+        message['Subject'] = email_subject
+        message['From'] = 'travelbuddy4geeks@gmail.com'  
+        message['To'] = email_receiver
+
+        try:
+            context = ssl.create_default_context()
+            with smtplib.SMTP_SSL('smtp.sendgrid.net', 465, context=context) as server:
+                server.login('apikey', SENDGRID_API_KEY)
+                server.send_message(message)
+            print("Password reset link sent to email.")
+            print("Generated reset token:", reset_token)
+            print("User reset token:", user.reset_token)
+            return jsonify({"message": "Ok, Password reset link sent to email."}), 200
+        except Exception as e:
+            print(f"Error sending email: {e}")
+            return jsonify({'error': str(e)}), 500
+
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return jsonify({'error': str(e)}), 500
 
 @api.route('/recoverPassword', methods=['POST'])
 @jwt_required()
@@ -223,4 +274,3 @@ def recoverPassword():
         user.password=password
         db.session.commit()
         return jsonify("Password updated"), 400
-

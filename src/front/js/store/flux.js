@@ -69,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             headers: {
               "Content-Type": "application/json",
             },
-            body: JSON.stringify(form), 
+            body: JSON.stringify(form),
           });
 
           if (!response.ok) {
@@ -77,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             throw new Error(errorBody.message || "Signup failed");
           }
 
-          const userData = await response.json(); 
+          const userData = await response.json();
           setStore({ user: { ...userData, weight: form.weight, activity_level: form.activity_level, name: form.name } });
 
           if (callback) callback();
@@ -147,26 +147,26 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
 
-      
+
       fetchProfilePicture: async () => {
         try {
           const resp = await fetch(`${apiUrl}/api/profilePicture`, {
             method: "GET",
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem('token'),
-          },
-       });
+            },
+          });
           if (!resp.ok) {
             throw new Error("Failed to fetch profile picture");
           }
           const data = await resp.json();
-    
-        return data.profile_picture;
-     } catch (error) {
-        console.error("Fetch profile picture error:", error);
-      throw error;
-    }
-  },
+
+          return data.profile_picture;
+        } catch (error) {
+          console.error("Fetch profile picture error:", error);
+          throw error;
+        }
+      },
 
       updateUser: async (email, weight, activityLevel, profilePicture) => {
         try {
@@ -176,7 +176,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             headers: {
               "Content-Type": "application/json",
               Authorization: "Bearer " + sessionStorage.getItem('token'),
-              
+
             },
             body: JSON.stringify({
               email: email,
@@ -186,15 +186,15 @@ const getState = ({ getStore, getActions, setStore }) => {
             }),
           });
           if (!resp.ok) {
-            
+
             throw new Error("Cannot update user");
           }
           const data = await resp.json();
-          console.log(data,"user profile info")
+          console.log(data, "user profile info")
           return true;
         } catch (error) {
           console.error("Update error:", error);
-          
+
           throw error;
         }
       },
@@ -206,9 +206,9 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
 
 
-    CreateDietPlan: (diet) => {
-      setStore ({saveDiet: diet})
-    }
+      CreateDietPlan: (diet) => {
+        setStore({ saveDiet: diet })
+      }
     },
 
     changePassword: async (token, password) => {
@@ -223,19 +223,19 @@ const getState = ({ getStore, getActions, setStore }) => {
           password: password,
         }),
       };
-        const res = await fetch(process.env.BACKEND_URL + "/api/recover-password", opts);
-        if (res.status < 200 || res.status >= 300) {
-          throw new Error("There was an error changing password");
-        }
-        const data = await res.json();
-        
-         console.log("USER INFO HERE",data)
-        return true;
+      const res = await fetch(process.env.BACKEND_URL + "/api/recoverPassword", opts);
+      if (res.status < 200 || res.status >= 300) {
+        throw new Error("There was an error changing password");
+      }
+      const data = await res.json();
+
+      console.log("USER INFO HERE", data)
+      return true;
     },
   };
 };
 
 
-    
+
 export default getState;
 

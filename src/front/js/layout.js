@@ -48,8 +48,8 @@ const Layout = () => {
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
             <Route element={<AboutUs />} path="/about_us" />
-            <Route element={<ForgotPassword />} path="/forgotpassword"/>
-            <Route element={<UpdatePassword />} path='/update-password?token=:token' />
+            <Route element={<ForgotPassword />} path="/forgotpassword" />
+            <Route element={<UpdatePassword />} path="/update-password" />
             <Route element={<h1>Not found!</h1>} />
           </Routes>
           <Footer />
