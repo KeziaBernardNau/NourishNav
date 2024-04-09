@@ -11,10 +11,11 @@ export default function UpdatePassword() {
   const changePassword = async (token, newPassword) => {
     try {
 
-      const response = await fetch(`${process.env.BACKEND_URL}/recoverPassword`, {
+      const response = await fetch(`${process.env.BACKEND_URL}/api/recoverPassword`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
         },
         body: JSON.stringify({
           password: newPassword,

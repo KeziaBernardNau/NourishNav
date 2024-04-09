@@ -49,8 +49,18 @@ const Layout = () => {
             <Route element={<Login />} path="/login" />
             <Route element={<AboutUs />} path="/about_us" />
             <Route element={<ForgotPassword />} path="/forgotpassword" />
-            <Route element={<UpdatePassword />} path="/update-password" />
+            <Route element={<UpdatePassword />} path="/recoverPassword" />
             <Route element={<h1>Not found!</h1>} />
+            <Route
+              element={
+                <img
+                  className="cowPlant"
+                  src="https://i.imgur.com/u01pV8K.png"
+                  alt="404:PAGE NOT FOUND"
+                />
+              }
+              path="*"
+            />
           </Routes>
           <Footer />
         </ScrollToTop>

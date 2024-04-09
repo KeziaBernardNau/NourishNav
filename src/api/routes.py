@@ -267,10 +267,16 @@ def forgotpassword():
 @jwt_required()
 def recoverPassword():
     body= request.get_json()
-    id= get_jwt_identity()
-    user= User.query.filter_by(id=id).first()
-    password=body.get("password")
-    if user is not None:
-        user.password=password
-        db.session.commit()
-        return jsonify("Password updated"), 400
+    identity = get_jwt_identity()
+    if 'email' in identity:
+        email = identity['email']
+        user= User.query.filter_by(email=email).first()
+        password=body.get("password")
+        if user is not None:
+            user.password=password
+            db.session.commit()
+            return jsonify("Password updated"), 200
+    else:
+        return jsonify("cannot find user"), 400
+
+   
