@@ -1,12 +1,15 @@
 .signup-container {
   display: flex;
   justify-content: center;
-  align-items: center; /* Center vertically */
+  align-items: center;
   position: relative;
   height: 100vh;
   background-color: #caf392;
   overflow: hidden;
   padding: 32px;
+}
+.signup-image-container {
+  margin-right: 20px;
 }
 
 .signup-overlay {
@@ -23,17 +26,17 @@
   z-index: 2;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center horizontally */
-  padding: 20px; /* Smaller padding */
+  align-items: center;
+  padding: 20px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   width: 80%;
-  max-width: 500px; /* Smaller maximum width */
+  max-width: 500px;
 }
 
 .signup-heading {
-  font-size: 2rem; /* Smaller font size */
+  font-size: 2rem;
   color: #2e8540;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;

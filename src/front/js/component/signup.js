@@ -4,89 +4,153 @@ import { useNavigate } from "react-router-dom";
 import "../../styles/signup.css";
 
 export default function Signup() {
-    const { actions } = useContext(Context);
-    const navigate = useNavigate();
+  const { actions } = useContext(Context);
+  const navigate = useNavigate();
 
-    // State initialization
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        password: "",
-        age: "",
-        height: "",
-        weight: "",
-        activityLevel: "Very Active"
-    });
+  // State initialization
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    age: "",
+    height: "",
+    weight: "",
+    activityLevel: "Very Active",
+  });
 
-    const [loginError, setLoginError] = useState("");
+  const [loginError, setLoginError] = useState("");
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    const handleSignup = async () => {
-        try {
-            await actions.signUp(formData, () => {
-                navigate("/login");
-            });
-        } catch (error) {
-            setLoginError("Failed to sign up: " + error.message);
-        }
-    };
+  const handleSignup = async () => {
+    try {
+      await actions.signUp(formData, () => {
+        navigate("/login");
+      });
+    } catch (error) {
+      setLoginError("Failed to sign up: " + error.message);
+    }
+  };
 
-    return (
-        <div className="signup-container">
-            {/* <img src="https://i.ibb.co/SxwrfCJ/grapefruit-1.png" alt=" Image" className="signup-image"></img> */}
-            <div className="signup-content">
-                <h2 className="signup-heading">Join Us</h2>
-                <p className="signup-subheading">Welcome! Join us by signing up below.</p>
-                <form className="signup-form">
-                    <div className="signup-form-group">
-                        <label htmlFor="name">Name</label>
-                        <input type="text" id="name" name="name" value={formData.name} onChange={handleInputChange} />
-                    </div>
-                    <div className="signup-form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" id="email" name="email" value={formData.email} onChange={handleInputChange} />
-                    </div>
-                    <div className="signup-form-group">
-                        <label htmlFor="password">Password</label>
-                        <input type="password" id="password" name="password" value={formData.password} onChange={handleInputChange} />
-                    </div>
-                    <div className="signup-form-group">
-                        <label htmlFor="age">Age</label>
-                        <input type="number" id="age" name="age" value={formData.age} onChange={handleInputChange} />
-                    </div>
-                    <div className="signup-form-group">
-                        <label htmlFor="height">Height (in cm)</label>
-                        <input type="number" id="height" name="height" value={formData.height} onChange={handleInputChange} />
-                    </div>
-                    <div className="signup-form-group">
-                        <label htmlFor="weight">Weight (in kg)</label>
-                        <input type="number" id="weight" name="weight" value={formData.weight} onChange={handleInputChange} />
-                    </div>
-                    <div className="signup-form-group">
-                        <label htmlFor="activityLevel">Activity Level:</label>
-                        <select id="activityLevel" name="activityLevel" value={formData.activityLevel} onChange={handleInputChange}>
-                            <option value="Very Active">Very Active</option>
-                            <option value="Less">Less</option>
-                            <option value="None">None</option>
-                            <option value="Disabled">Disabled</option>
-                        </select>
-                    </div>
-                    {loginError && <p className="signup-error-message">{loginError}</p>}
-                    <div className="signup-button-group">
-                        <button className="signup-btn" onClick={handleSignup}>Sign up</button>
-                    </div>
-                </form>
-                <p className="signup-login-link">Already a member? <span className="signup-text-primary" onClick={() => navigate('/login')}>Log in</span></p>
-            </div>
+  return (
+    <div className="signup-container">
+      <div className="signup-image-container">
+          <img
+            src="https://i.ibb.co/7tVpxPW/signup-image1.png"
+            alt="image of graprefruit"
+            style={{ width: "250px" }} // Adjust the width as needed
+          />
         </div>
-    );
+      <div className="signup-content">
+        <h2 className="signup-heading">Join Us</h2>
+        <p className="signup-subheading">
+          Welcome! Join us by signing up below.
+        </p>
+        <form className="signup-form">
+          <div className="signup-form-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="age">Age</label>
+            <input
+              type="number"
+              id="age"
+              name="age"
+              value={formData.age}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="height">Height (in cm)</label>
+            <input
+              type="number"
+              id="height"
+              name="height"
+              value={formData.height}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="weight">Weight (in kg)</label>
+            <input
+              type="number"
+              id="weight"
+              name="weight"
+              value={formData.weight}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="signup-form-group">
+            <label htmlFor="activityLevel">Activity Level:</label>
+            <select
+              id="activityLevel"
+              name="activityLevel"
+              value={formData.activityLevel}
+              onChange={handleInputChange}
+            >
+              <option value="Very Active">Very Active</option>
+              <option value="Less">Less</option>
+              <option value="None">None</option>
+              <option value="Disabled">Disabled</option>
+            </select>
+          </div>
+          {loginError && <p className="signup-error-message">{loginError}</p>}
+          <div className="signup-button-group">
+            <button className="signup-btn" onClick={handleSignup}>
+              Sign up
+            </button>
+          </div>
+        </form>
+        <p className="signup-login-link">
+          Already a member?{" "}
+          <span
+            className="signup-text-primary"
+            onClick={() => navigate("/login")}
+          >
+            Log in
+          </span>
+        </p>
+      </div>
+      <div className="signup-image-container">
+        <img
+            src="https://i.ibb.co/3mWXwTz/cookies-1-1.png"
+            alt="image of cookies"
+            style={{ width: '350px' }} 
+        />
+    </div>
+    </div>
+  );
 }
-
-
 
 // import React, { useState, useContext } from "react";
 // import { Context } from "../store/appContext";
