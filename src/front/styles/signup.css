@@ -1,106 +1,115 @@
-.signup-container {
+/* CSS for Signup Page */
+.signup-page body,
+.signup-page html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+.signup-page {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
-  height: 100vh;
-  background-color: #caf392;
-  overflow: hidden;
-  padding: 32px;
-}
-.signup-image-container {
-  margin-right: 20px;
-}
-#grapefruit {
-  margin-top: -200px;
-}
-
-#avocado {
-  margin-top: 50px;
-}
-
-.signup-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
   height: 100%;
-  z-index: 1;
+  background-color: #caf392; 
 }
 
-.signup-content {
-  position: relative;
-  z-index: 2;
+.signup-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  max-width: 1400px; 
+  padding: 20px;
+  background-color: #e8f979; /* change color to whatever yellow or color you like */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative; 
+}
+
+.signup-image-container {
+  position: relative; 
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.left-images,
+.right-images {
+  position: absolute; 
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  width: 80%;
-  max-width: 500px;
 }
 
-.signup-heading {
+.left-images {
+  left: 5%; 
+}
+
+.right-images {
+  right: 5%; 
+}
+
+.image-wrapper {
+  margin: 80px 0; 
+}
+
+/* Adjusted positions for each image */
+#salad {
+  margin-top: -10px; 
+}
+
+#avocado {
+  top: 50px; /* Adjusted top position */
+}
+
+#grapefruit {
+  margin-top: -10px; 
+}
+
+#cookie {
+  top: 50px; /* Adjusted top position */
+}
+
+.signup-content {
+  flex: 1;
+  max-width: 320px;
+  padding: 20px;
+  background-color: transparent; /* Removed white background */
+  border-radius: 10px; /* Added border-radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow */
+}
+
+.signup-content .signup-heading {
   font-size: 2rem;
-  color: #2e8540;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  color: #2e8540; 
   margin-bottom: 20px;
 }
 
-.signup-form {
-  width: 100%;
-  max-width: 400px; /* Smaller maximum width */
-  height: auto;
-}
-
-.signup-form-group {
-  margin-bottom: 15px; /* Smaller margin */
-  width: 100%;
-}
-
-.signup-form-group label {
-  margin-bottom: 3px; /* Smaller margin */
-}
-
-.signup-form-group input {
-  padding: 10px; /* Smaller padding */
+.signup-content .signup-form-group input,
+.signup-content .signup-form-group select {
+  padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
+  font-size: 1rem;
   width: 100%;
-  font-size: 0.9rem; /* Smaller font size */
+  margin-bottom: 10px;
 }
 
-.signup-error-message {
-  color: red;
-  margin-top: 8px; /* Smaller margin */
-}
-
-.signup-btn {
-  padding: 10px 20px; /* Smaller padding */
+.signup-content .signup-btn {
   background-color: salmon;
   color: white;
-  border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  padding: 15px 20px;
 }
 
-.signup-btn:hover {
+.signup-content .signup-btn:hover {
   background-color: rgb(241, 113, 90);
 }
 
-.signup-login-link {
-  margin-top: 15px; /* Smaller margin */
-  font-size: 0.8rem; /* Smaller font size */
-}
-
-.signup-login-link a {
-  color: blue;
-  text-decoration: none;
-}
-
-.signup-login-link a:hover {
-  text-decoration: underline;
+.signup-image-container img {
+  width: 150px;
+  height: auto;
 }
