@@ -34,12 +34,12 @@ export const Footer = () => {
                 </div>
               </form>
               <div id="icons">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-twitter"></i>
-                    <i class="fa-brands fa-pinterest-p"></i>
+                <i className="fa-brands fa-facebook"></i>
+                <i className="fa-brands fa-instagram"></i>
+                <i className="fa-brands fa-twitter"></i>
+                <i className="fa-brands fa-pinterest-p"></i>
 
-                  </div>
+              </div>
             </div>
           </div>
         </div>

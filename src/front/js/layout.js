@@ -9,7 +9,8 @@ import { Demo } from "./pages/demo";
 import Login from "./pages/login";
 import Private from "./pages/profile";
 import Recipe from "./pages/Recipe.jsx";
-
+import UpdatePassword from "./component/UpdatePassword";
+import ForgotPassword from "./component/ForgotPassword.js";
 import Signup from "./component/signup";
 
 import { Single } from "./pages/single";
@@ -47,7 +48,19 @@ const Layout = () => {
             <Route element={<Signup />} path="/signup" />
             <Route element={<Login />} path="/login" />
             <Route element={<AboutUs />} path="/about_us" />
+            <Route element={<ForgotPassword />} path="/forgotpassword" />
+            <Route element={<UpdatePassword />} path="/recoverPassword" />
             <Route element={<h1>Not found!</h1>} />
+            <Route
+              element={
+                <img
+                  className="cowPlant"
+                  src="https://i.imgur.com/u01pV8K.png"
+                  alt="404:PAGE NOT FOUND"
+                />
+              }
+              path="*"
+            />
           </Routes>
           <Footer />
         </ScrollToTop>
