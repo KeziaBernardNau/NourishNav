@@ -11,6 +11,13 @@
 .signup-image-container {
   margin-right: 20px;
 }
+#grapefruit {
+  margin-top: -200px;
+}
+
+#avocado {
+  margin-top: 50px;
+}
 
 .signup-overlay {
   position: absolute;

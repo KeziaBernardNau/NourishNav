@@ -37,13 +37,20 @@ export default function Signup() {
 
   return (
     <div className="signup-container">
-      <div className="signup-image-container">
+      <div className="signup-image-container" id="grapefruit">
           <img
             src="https://i.ibb.co/7tVpxPW/signup-image1.png"
             alt="image of graprefruit"
             style={{ width: "250px" }} // Adjust the width as needed
           />
         </div>
+        <div className="signup-image-container" id="avocado">
+        <img
+            src="https://i.ibb.co/JtKWJZv/avocado.png"
+            alt="image of avocados"
+            style={{ width: '300px' }} 
+        />
+    </div>
       <div className="signup-content">
         <h2 className="signup-heading">Join Us</h2>
         <p className="signup-subheading">
