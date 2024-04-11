@@ -94,7 +94,9 @@ function MacroTracker() {
       <div className="macro-container">
         <div className="total-calories-container">
           <div className="total-calories-circle">{totalMacros.calories}</div>
-          <p style={{ fontSize: "28px", fontWeight: "bold", color:"#214e33"}}>Total Calories</p>
+          <p style={{ fontSize: "28px", fontWeight: "bold", color: "#214e33" }}>
+            Total Calories
+          </p>
         </div>
 
         <div className="macros-info-container">

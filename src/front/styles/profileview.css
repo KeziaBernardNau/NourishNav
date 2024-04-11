@@ -1,26 +1,65 @@
-.sidebar {
-    background-color: #f8f9fa; /* Light gray background */
-    padding-top: 20px;
+.profile-view .sidebar {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  height: fit-content;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.profile-view .form-label {
+  color: #333;
+}
+
+.profile-view .nav-link {
+  color: #333;
+  transition: color 0.2s ease-in-out;
+}
+
+.profile-view .nav-link:hover,
+.profile-view .nav-link.active {
+  color: #ff6347;
+}
+
+.profile-view .profile-content h2 {
+  color: #ff6347;
+}
+
+.profile-view .profile-form .form-control:focus {
+  border-color: #98ff98;
+  box-shadow: 0 0 8px #98ff98;
+}
+
+.profile-view .macro-calculator {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.profile-view .profile-form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  max-width: 600px; /* Adjust as needed */
+}
+
+.profile-view .btn-primary {
+  background-color: #ff6347;
+  border: none;
+}
+
+.profile-view .img-thumbnail {
+  max-width: 200px;
+  border-radius: 50%;
+}
+
+/* Ensure responsiveness */
+@media (max-width: 768px) {
+  .profile-view .sidebar,
+  .profile-view .profile-content {
+    margin-top: 20px;
   }
-  
-  .sidebar ul.nav {
-    padding-left: 0;
-  }
-  
-  .sidebar .nav-link {
-    color: #333; /* Dark text color */
-  }
-  
-  .sidebar .nav-link.active {
-    font-weight: bold; /* Bold font for active link */
-  }
-  
-  /* Main Content Area Styles */
-  .main-content {
-    padding-top: 20px;
-  }
-  
-  .main-content h2 {
-    color: #333; /* Dark text color */
-    margin-bottom: 20px;
-  }
+}

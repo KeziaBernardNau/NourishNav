@@ -1,6 +1,5 @@
 #main-container {
   background-color: #fbf1ee;
-
 }
 
 .macro-container {
@@ -19,11 +18,10 @@
   background-image: url("https://i.ibb.co/kGQmpfY/orange-1.png");
   top: 0;
   left: 0;
-  width: 42%;
-  height: 50%;
+  width: 40%;
+  height: 46%;
   background-size: cover;
   margin-left: -105px;
-
 }
 
 .bottom-right-image-container {

@@ -12,7 +12,7 @@
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #caf392; 
+  background-color: #caf392;
 }
 
 .signup-container {
@@ -20,16 +20,16 @@
   justify-content: space-around;
   align-items: center;
   width: 80%;
-  max-width: 1400px; 
+  max-width: 1400px;
   padding: 20px;
   background-color: #e8f979; /* change color to whatever yellow or color you like */
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  position: relative; 
+  position: relative;
 }
 
 .signup-image-container {
-  position: relative; 
+  position: relative;
   display: flex;
   flex: 1;
   justify-content: center;
@@ -37,27 +37,27 @@
 
 .left-images,
 .right-images {
-  position: absolute; 
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 .left-images {
-  left: 5%; 
+  left: 5%;
 }
 
 .right-images {
-  right: 5%; 
+  right: 5%;
 }
 
 .image-wrapper {
-  margin: 80px 0; 
+  margin: 80px 0;
 }
 
 /* Adjusted positions for each image */
 #salad {
-  margin-top: -10px; 
+  margin-top: -10px;
 }
 
 #avocado {
@@ -65,7 +65,7 @@
 }
 
 #grapefruit {
-  margin-top: -10px; 
+  margin-top: -10px;
 }
 
 #cookie {
@@ -83,7 +83,7 @@
 
 .signup-content .signup-heading {
   font-size: 2rem;
-  color: #2e8540; 
+  color: #2e8540;
   margin-bottom: 20px;
 }
 
