@@ -29,7 +29,7 @@ export default function Login() {
           <div className="login-background"></div>
           <div className="login-overlay" ></div>
           <div className="login-content" style={{ marginLeft: "20%" }}>
-            <h1 className="banner-title">Login</h1>
+            <h1 id="banner-title">Login</h1>
             <div className="input-group" >
               <input
                 className="input-field"

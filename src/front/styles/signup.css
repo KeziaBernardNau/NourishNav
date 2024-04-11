@@ -1,93 +1,115 @@
-.signup {
-  display: flex;
-  justify-content: flex-end; 
-  align-items: center; 
-  position: relative;
-  height: 100vh;
-  background-color: mintcream;
-  overflow: hidden;
-}
-
-.sign-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 50%;
+/* CSS for Signup Page */
+.signup-page body,
+.signup-page html {
+  margin: 0;
+  padding: 0;
   height: 100%;
-  background-image: url("https://i.ibb.co/yV9rFmW/i-Stock-871339902.jpg");
-  background-size: cover;
-  background-position: left; 
-  z-index: 0; 
+  font-family: Arial, sans-serif;
 }
 
-.signup-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-
-.signup-content {
-  position: relative;
-  z-index: 2;
+.signup-page {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
-  padding: 0 20px;
+  background-color: #caf392;
 }
 
-.banner-title {
-  font-size: 3rem;
+.signup-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 80%;
+  max-width: 1400px;
+  padding: 20px;
+  background-color: #e8f979; /* change color to whatever yellow or color you like */
+  border-radius: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.signup-image-container {
+  position: relative;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+
+.left-images,
+.right-images {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-images {
+  left: 5%;
+}
+
+.right-images {
+  right: 5%;
+}
+
+.image-wrapper {
+  margin: 80px 0;
+}
+
+/* Adjusted positions for each image */
+#salad {
+  margin-top: -10px;
+}
+
+#avocado {
+  top: 50px; /* Adjusted top position */
+}
+
+#grapefruit {
+  margin-top: -10px;
+}
+
+#cookie {
+  top: 50px; /* Adjusted top position */
+}
+
+.signup-content {
+  flex: 1;
+  max-width: 320px;
+  padding: 20px;
+  background-color: transparent; /* Removed white background */
+  border-radius: 10px; /* Added border-radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added box-shadow */
+}
+
+.signup-content .signup-heading {
+  font-size: 2rem;
+  color: #2e8540;
   margin-bottom: 20px;
-  color: #ffffff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
-.input-field {
-  margin-bottom: 10px;
+.signup-content .signup-form-group input,
+.signup-content .signup-form-group select {
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 250px; 
-  display: inline-block;
+  font-size: 1rem;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-
-
-.error-message {
-  color: red;
-  margin-top: 10px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 10px 20px;
-  background-color: salmon !important;
-  color: white !important;
-  text-decoration: none !important;
-  border: none;
-  border-radius: 5px !important;
-  transition: background-color 0.3s;
+.signup-content .signup-btn {
+  background-color: salmon;
+  color: white;
+  border-radius: 5px;
   cursor: pointer;
+  padding: 15px 20px;
 }
 
-.btn:hover {
+.signup-content .signup-btn:hover {
   background-color: rgb(241, 113, 90);
 }
 
-.link-button {
-  margin-top: 20px;
-}
-
-.link-button a {
-  color: blue;
-  text-decoration: none;
-}
-
-.link-button a:hover {
-  text-decoration: underline;
+.signup-image-container img {
+  width: 150px;
+  height: auto;
 }
