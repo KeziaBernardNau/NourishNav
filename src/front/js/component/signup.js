@@ -7,6 +7,7 @@ export default function Signup() {
   const { actions } = useContext(Context);
   const navigate = useNavigate();
 
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",

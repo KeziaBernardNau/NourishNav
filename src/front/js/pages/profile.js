@@ -26,11 +26,23 @@ const Private = () => {
     } else {
       setUserDetails((prevState) => ({
         ...prevState,
+
         ...store.user,
+
+        name: store.user.name || "",
+        email: store.user.email || "",
+        weight: store.user.weight || "",
+        activity_level: store.user.activity_level || "",
+        profilePicture: store.user.profilePicture || "",
       }));
     }
   }, [store.user, actions, navigate]);
 
+
+
+  function updateUser() {
+    actions.updateUser(userDetails.email, userDetails.weight, userDetails.activity_level, userDetails.name, file)
+  }
   const handleFileChange = (e) => {
     setFile(URL.createObjectURL(e.target.files[0]));
   };
@@ -84,6 +96,7 @@ const Private = () => {
           <div className="macro-calculator mt-3">
             <Macrocalculator />
           </div>
+
         </div>
         <div className="col-md-6">
           <div
