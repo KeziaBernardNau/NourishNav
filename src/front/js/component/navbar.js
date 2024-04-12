@@ -62,41 +62,6 @@ export const Navbar = () => {
                   Profile
                 </Link>
               </li>
-              {/* <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Account
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <Link className="dropdown-item" to="/profile">
-                      Account
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/favorites">
-                      Favorites
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/metrics">
-                      Metrics
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/login">
-                      Log-in
-                    </Link>
-                  </li>
-                </ul>
-              </li> */}
             </ul>
           </div>
         </div>

@@ -26,9 +26,7 @@ const Private = () => {
     } else {
       setUserDetails((prevState) => ({
         ...prevState,
-
         ...store.user,
-
         name: store.user.name || "",
         email: store.user.email || "",
         weight: store.user.weight || "",
@@ -38,9 +36,7 @@ const Private = () => {
     }
   }, [store.user, actions, navigate]);
 
-
-
-  function updateUser() {
+  function updateUserProfile() {
     actions.updateUser(userDetails.email, userDetails.weight, userDetails.activity_level, userDetails.name, file)
   }
   const handleFileChange = (e) => {
@@ -55,9 +51,6 @@ const Private = () => {
     }));
   };
 
-  const updateUser = () => {
-    actions.updateUser(userDetails);
-  };
   const handleFileButtonClick = () => {
     // Trigger the file input click event
     document.getElementById("fileInput").click();
@@ -65,7 +58,7 @@ const Private = () => {
   return (
     <div className="profile-view container mt-5">
       <div className="row">
-      <h2>Profile</h2>
+        <h2>Profile</h2>
         <div className="col-md-3">
           <div className="sidebar">
             {/* Sidebar content */}
@@ -92,11 +85,9 @@ const Private = () => {
               </li>
             </ul>
           </div>
-          {/* Macrocalculator */}
           <div className="macro-calculator mt-3">
             <Macrocalculator />
           </div>
-
         </div>
         <div className="col-md-6">
           <div
@@ -176,53 +167,24 @@ const Private = () => {
                   value={userDetails.activityLevel}
                   onChange={handleChange}
                 >
+                  <option value="Sedentary">Sedentary</option>
+                  <option value="Lightly Active">Lightly Active</option>
+                  <option value="Moderately Active">Moderately Active</option>
                   <option value="Very Active">Very Active</option>
-                  <option value="Less Active">Less Active</option>
-                  <option value="Not Active">Not Active</option>
-                  <option value="Disabled">Disabled</option>
+                  <option value="Extra Active">Extra Active</option>
                 </select>
               </div>
               <div className="mb-3">
-                <label htmlFor="inputCurrentTrack" className="form-label">
-                  Current Track
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="inputCurrentTrack"
-                  name="currentTrack"
-                  value={userDetails.currentTrack}
-                  onChange={handleChange}
-                />
+                <button type="button" className="btn btn-primary" onClick={updateUserProfile}>
+                  Update Profile
+                </button>
               </div>
-              <div className="mb-3">
-                <label htmlFor="selectDietaryPreference" className="form-label">
-                  Dietary Preferences
-                </label>
-                <select
-                  className="form-control"
-                  id="selectDietaryPreference"
-                  name="dietaryPreference"
-                  value={userDetails.dietaryPreference}
-                  onChange={handleChange}
-                >
-                  <option value="">Select...</option>
-                  <option value="Vegan">Vegan</option>
-                  <option value="Vegetarian">Vegetarian</option>
-                  <option value="Gluten-Free">Gluten-Free</option>
-                  <option value="Keto">Keto</option>
-                  <option value="Paleo">Paleo</option>
-                  <option value="No Restrictions">No Restrictions</option>
-                </select>
-              </div>
-              <button
-                type="button"
-                onClick={updateUser}
-                className="btn btn-primary"
-              >
-                Save
-              </button>
             </form>
+          </div>
+        </div>
+        <div className="col-md-3">
+          <div>
+            {/* Other optional content */}
           </div>
         </div>
       </div>
@@ -231,6 +193,10 @@ const Private = () => {
 };
 
 export default Private;
+
+
+
+
 
 // import React, { useEffect, useContext, useState } from "react";
 // import { Context } from "../store/appContext";

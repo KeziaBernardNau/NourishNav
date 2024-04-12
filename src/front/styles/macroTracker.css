@@ -35,6 +35,17 @@
   background-size: cover;
   /* z-index: -1; */
 }
+.bottom-left-image-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 39%;
+  height: 29%;
+  margin-left: -170px;
+  background-image: url("https://i.ibb.co/w6Vr0WY/lime-1.png");
+  background-size: cover;
+  /* z-index: -1; */
+}
 
 .macros-info-container {
   display: flex;

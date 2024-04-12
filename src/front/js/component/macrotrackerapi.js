@@ -73,24 +73,26 @@ export const Macrotrackerapi = ({ onAdd }) => {
       </div>
 
         {nutrition && (
-        <div>
-          <ul style={{ listStyleType: "none", padding: 0, color: "white"}}>
-            <li>Food Item: {nutrition.name}</li>
-            <li>Calories: {nutrition.calories}</li>
-            <li>Serving Size: {nutrition.serving_size_g} g</li>
-            <li>Fat: {nutrition.fat_total_g} g</li>
-            <li>Sugar: {nutrition.sugar_g} g</li>
-            <li>Fiber: {nutrition.fiber_g} g</li>
-            <li>Protein: {nutrition.protein_g} g</li>
-            <li>Cholesterol: {nutrition.cholesterol_mg} mg</li>
-            <li>Carbohydrates: {nutrition.carbohydrates_total_g} g</li>
-            <li>Saturated Fat: {nutrition.fat_saturated_g} g</li>
-            <li>Sodium: {nutrition.sodium_mg} mg</li>
-          </ul>
-          <button onClick={() => onAdd(nutrition, mealType)} className="btn btn-salmon">
-            Add to Meal
-          </button>
-        </div>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+  <ul style={{ listStyleType: "none", padding: 0, color: "white", display: "flex", flexDirection: "row", flexWrap: "wrap", margin: 0 }}>
+    <li style={{ marginRight: "10px" }}><strong>Food Item:</strong> {nutrition.name}</li>
+    <li style={{ marginRight: "10px" }}><strong>Calories:</strong> {nutrition.calories}</li>
+    <li style={{ marginRight: "10px" }}><strong>Serving Size:</strong> {nutrition.serving_size_g} g</li>
+    <li style={{ marginRight: "10px" }}><strong>Fat:</strong> {nutrition.fat_total_g} g</li>
+    <li style={{ marginRight: "10px" }}><strong>Sugar:</strong> {nutrition.sugar_g} g</li>
+    <li style={{ marginRight: "10px" }}><strong>Fiber:</strong> {nutrition.fiber_g} g</li>
+    <li style={{ marginRight: "10px" }}><strong>Protein:</strong> {nutrition.protein_g} g</li>
+    <li style={{ marginRight: "10px" }}><strong>Cholesterol:</strong> {nutrition.cholesterol_mg} mg</li>
+    <li style={{ marginRight: "10px" }}><strong>Carbohydrates:</strong> {nutrition.carbohydrates_total_g} g</li>
+    <li style={{ marginRight: "10px" }}><strong>Saturated Fat:</strong> {nutrition.fat_saturated_g} g</li>
+    <li><strong>Sodium:</strong> {nutrition.sodium_mg} mg</li>
+  </ul>
+  <button onClick={() => onAdd(nutrition, mealType)} className="btn btn-salmon">
+    Add to Meal
+  </button>
+</div>
+
+      
       )}
       </form>
       

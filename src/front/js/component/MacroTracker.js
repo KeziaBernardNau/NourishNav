@@ -193,7 +193,7 @@ function MacroTracker() {
                             }
                             className="btn salmon-button"
                           >
-                            {/* <FontAwesomeIcon icon={faTimes} /> */}
+                            <i class="fa-solid fa-x"></i>
                           </button>
                         </li>
                       ))}
@@ -207,6 +207,7 @@ function MacroTracker() {
         <div className="water-tracker-section section">
           <WaterTracker />
         </div>
+        <div className="bottom-left-image-container"></div>
         <div className="bottom-right-image-container"></div>
       </div>
     </div>

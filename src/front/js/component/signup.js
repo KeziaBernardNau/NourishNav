@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import "../../styles/signup.css";
@@ -6,7 +6,6 @@ import "../../styles/signup.css";
 export default function Signup() {
   const { actions } = useContext(Context);
   const navigate = useNavigate();
-
 
   const [formData, setFormData] = useState({
     name: "",
@@ -19,6 +18,24 @@ export default function Signup() {
   });
 
   const [loginError, setLoginError] = useState("");
+
+  const [signupHeading, setSignupHeading] = useState("Join Us");
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const texts = [
+        "Take charge of your health.",
+        "Nourish your one body.",
+        "Discover the Secrets of Your Plate!"
+      ];
+      const nextIndex = texts.findIndex(text => text === signupHeading) + 1;
+      const newText = texts[nextIndex % texts.length];
+      setSignupHeading(newText);
+    }, 3000); 
+
+    return () => clearTimeout(timer);
+  }, [signupHeading]);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -54,7 +71,7 @@ export default function Signup() {
             </div>
           </div>
           <div className="signup-content">
-            <h2 className="signup-heading">Join Us</h2>
+          <h2 className="signup-heading">{signupHeading}</h2>
             <p>Welcome! Join us by signing up below.</p>
             <form className="signup-form">
               <div className="signup-form-group">
@@ -133,9 +150,10 @@ export default function Signup() {
                   className="input-field" // Added class for styling
                 >
                   <option value="Very Active">Very Active</option>
-                  <option value="Less">Less</option>
-                  <option value="None">None</option>
-                  <option value="Disabled">Disabled</option>
+<option value="Less">Less</option> {/* Should this be "Less Active"? */}
+<option value="None">None</option> {/* Is this option necessary? */}
+<option value="Disabled">Disabled</option>
+
                 </select>
               </div>
               {loginError && <p className="signup-error-message">{loginError}</p>}
@@ -145,15 +163,18 @@ export default function Signup() {
                 </button>
               </div>
             </form>
-            <p className="signup-login-link">
-              Already a member?{" "}
-              <span
-                className="signup-text-primary"
-                onClick={() => navigate("/login")}
-              >
-                Log in
-              </span>
-            </p>
+            <p className="signup-login-link" style={{ textAlign: "center" }}>
+  Already a member?{" "}
+  <span
+    className="signup-text-success"
+    onClick={() => navigate("/login")}
+    style={{ cursor: "pointer", color: "green" }}
+  >
+    Log in
+  </span>
+</p>
+
+
           </div>
           <div className="right-images">
             <div className="image-wrapper" id="grapefruit">
