@@ -1,7 +1,7 @@
 .login {
   display: flex;
-  justify-content: flex-end; 
-  align-items: center; 
+  justify-content: flex-end;
+  align-items: center;
   position: relative;
   height: 100vh;
   background-color: mintcream;
@@ -17,8 +17,8 @@
   height: 100%;
   background-image: url("https://i.ibb.co/yQy96Kb/i-Stock-1022091376.jpg");
   background-size: cover;
-  background-position: left; 
-  z-index: 0; 
+  background-position: left;
+  z-index: 0;
 }
 
 .login-overlay {
@@ -54,7 +54,7 @@
   padding: 10px;
   border-radius: 5px;
   border: 1px solid #ccc;
-  width: 250px; 
+  width: 250px;
 }
 
 .error-message {
@@ -62,8 +62,7 @@
   margin-top: 10px;
 }
 
-
-.btn {
+#login-btn {
   display: inline-block;
   padding: 10px 20px;
   background-color: salmon !important;
@@ -78,7 +77,6 @@
 .btn:hover {
   background-color: rgb(241, 113, 90);
 }
-
 
 .link-button {
   margin-top: 20px;

@@ -59,10 +59,10 @@ function MacroTracker() {
     const newFoodItem = {
       id: Date.now(),
       foodItem: nutrition.name,
-      calories: nutrition.calories,
-      protein: nutrition.protein_g,
-      fat: nutrition.fat_total_g,
-      carbohydrates: nutrition.carbohydrates_total_g,
+      calories: Math.round(nutrition.calories),
+      protein: Math.round(nutrition.protein_g),
+      fat: Math.round(nutrition.fat_total_g),
+      carbohydrates: Math.round(nutrition.carbohydrates_total_g),
       quantity: 1,
     };
 
@@ -70,12 +70,43 @@ function MacroTracker() {
       ...prevMeals,
       [mealType]: [...prevMeals[mealType], newFoodItem],
     }));
+
+    setTotalMacros((prevTotalMacros) => ({
+      ...prevTotalMacros,
+      calories: Math.round(prevTotalMacros.calories + nutrition.calories),
+      protein: Math.round(prevTotalMacros.protein + nutrition.protein_g),
+      fat: Math.round(prevTotalMacros.fat + nutrition.fat_total_g),
+      carbohydrates: Math.round(
+        prevTotalMacros.carbohydrates + nutrition.carbohydrates_total_g
+      ),
+    }));
   };
 
-  const handleDeleteFood = (mealType, itemId, itemQuantity) => {
+  const handleDeleteFood = (
+    mealType,
+    itemId,
+    itemQuantity,
+    itemProtein,
+    itemFat,
+    itemCarbs
+  ) => {
     setMeals((prevMeals) => ({
       ...prevMeals,
       [mealType]: prevMeals[mealType].filter((item) => item.id !== itemId),
+    }));
+
+    // Update total macros
+    setTotalMacros((prevTotalMacros) => ({
+      ...prevTotalMacros,
+      calories: Math.round(
+        prevTotalMacros.calories -
+          itemQuantity * (itemProtein + itemFat + itemCarbs)
+      ),
+      protein: Math.round(prevTotalMacros.protein - itemQuantity * itemProtein),
+      fat: Math.round(prevTotalMacros.fat - itemQuantity * itemFat),
+      carbohydrates: Math.round(
+        prevTotalMacros.carbohydrates - itemQuantity * itemCarbs
+      ),
     }));
   };
 

@@ -37,7 +37,13 @@ const Private = () => {
   }, [store.user, actions, navigate]);
 
   function updateUserProfile() {
-    actions.updateUser(userDetails.email, userDetails.weight, userDetails.activity_level, userDetails.name, file)
+    actions.updateUser(
+      userDetails.email,
+      userDetails.weight,
+      userDetails.activity_level,
+      userDetails.name,
+      file
+    );
   }
   const handleFileChange = (e) => {
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -175,7 +181,11 @@ const Private = () => {
                 </select>
               </div>
               <div className="mb-3">
-                <button type="button" className="btn btn-primary" onClick={updateUserProfile}>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={updateUserProfile}
+                >
                   Update Profile
                 </button>
               </div>
@@ -183,9 +193,7 @@ const Private = () => {
           </div>
         </div>
         <div className="col-md-3">
-          <div>
-            {/* Other optional content */}
-          </div>
+          <div></div>
         </div>
       </div>
     </div>
@@ -193,10 +201,6 @@ const Private = () => {
 };
 
 export default Private;
-
-
-
-
 
 // import React, { useEffect, useContext, useState } from "react";
 // import { Context } from "../store/appContext";

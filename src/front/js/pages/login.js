@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate, Link } from "react-router-dom";
-import "../../styles/loginpage.css"; 
+import "../../styles/loginpage.css";
 
-export default function Login() {  
+export default function Login() {
   const { store, actions } = useContext(Context);
   const [email, setemail] = useState("");
   const [password, setPassword] = useState("");
@@ -16,7 +16,7 @@ export default function Login() {
     e.preventDefault();
     try {
       await actions.login({ email, password });
-      navigate('/profile'); 
+      navigate("/profile");
     } catch (error) {
       setError(error.message);
     }
@@ -27,10 +27,10 @@ export default function Login() {
       <form onSubmit={handleSubmit}>
         <div className="login">
           <div className="login-background"></div>
-          <div className="login-overlay" ></div>
+          <div className="login-overlay"></div>
           <div className="login-content" style={{ marginLeft: "20%" }}>
             <h1 id="banner-title">Login</h1>
-            <div className="input-group" >
+            <div className="input-group">
               <input
                 className="input-field"
                 type="text"
@@ -39,7 +39,7 @@ export default function Login() {
                 onChange={(e) => setemail(e.target.value)}
               />
             </div>
-            <div className="input-group" >
+            <div className="input-group">
               <input
                 className="input-field"
                 type="password"
@@ -49,7 +49,9 @@ export default function Login() {
               />
             </div>
             {error && <p className="error-message">{error}</p>}
-            <button className="btn" type="submit">Login</button>
+            <button className="btn" id="login-btn" type="submit">
+              Login
+            </button>
             <div className="link-button">
               <Link to="/ForgotPassword">Forgot Password</Link>
             </div>
