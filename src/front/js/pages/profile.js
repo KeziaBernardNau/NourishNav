@@ -60,7 +60,16 @@ const Private = () => {
   return (
     <div className="profile-view container mt-5">
       <div className="row">
-        <h2>Profile</h2>
+        <h1
+          style={{
+            textAlign: "center",
+            color: "#2e8540",
+            fontFamily: "Arial",
+            fontSize: "45px",
+          }}
+        >
+          Profile
+        </h1>
         <div className="col-md-3">
           <div className="sidebar">
             {/* Sidebar content */}
@@ -99,6 +108,7 @@ const Private = () => {
               backgroundColor: "#f8f9fa",
               padding: "20px",
               borderRadius: "10px",
+              marginLeft: "15px",
             }}
           >
             <div className="text-center mb-3">
