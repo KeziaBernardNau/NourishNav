@@ -66,3 +66,12 @@ export default function UpdatePassword() {
     </div>
   );
 }
+
+
+
+
+
+
+
+
+
