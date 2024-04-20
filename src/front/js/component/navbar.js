@@ -9,13 +9,13 @@ export const Navbar = () => {
     <div id="whole-wheat" className="px-5">
       <nav className="navbar navbar-expand-lg d-flex justify-content-between">
         <div className="d-flex justify-content-between w-100">
-        <Link
-  className="navbar-brand"
-  to={store.user ? "/profile" : "/"}
-  style={{ fontSize: '30px', color: 'forestGreen' }}
->
-  NourishNav
-</Link>
+          <Link
+            className="navbar-brand"
+            to={store.user ? "/profile" : "/"}
+            style={{ fontSize: '30px', color: 'forestGreen' }}
+          >
+            NourishNav
+          </Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -33,12 +33,12 @@ export const Navbar = () => {
           >
             <ul className="navbar-nav mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link" to="/features">
+                <Link className="nav-link" to="/">
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about">
+                <Link className="nav-link" to="/macro">
                   Nutrition
                 </Link>
               </li>
@@ -48,50 +48,20 @@ export const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/menu">
+                <Link className="nav-link" to="/about_us">
                   About
                 </Link>
               </li>
               <li className="nav-item">
-              <Link className="nav-link profile-link" to="/profile">
-  Profile
-</Link>
+                <Link className="nav-link" to="/login">
+                  Login
+                </Link>
               </li>
-              {/* <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Account
-                </a>
-                <ul className="dropdown-menu dropdown-menu-end">
-                  <li>
-                    <Link className="dropdown-item" to="/profile">
-                      Account
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/favorites">
-                      Favorites
-                    </Link>
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/metrics">
-                      Metrics
-                    </Link>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <Link className="dropdown-item" to="/login">
-                      Log-in
-                    </Link>
-                  </li>
-                </ul>
-              </li> */}
+              <li className="nav-item">
+                <Link className="nav-link profile-link" to="/profile">
+                  Profile
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

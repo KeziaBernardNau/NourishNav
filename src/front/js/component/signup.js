@@ -1,55 +1,355 @@
+// code with mentor help
 import React, { useState, useContext } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
+import "../../styles/signup.css";
+import HeaderSignup from "./headerSignup";
 
 export default function Signup() {
-    const { actions } = useContext(Context);
-    const navigate = useNavigate();
+  const { actions } = useContext(Context);
+  const navigate = useNavigate();
 
-    // State initialization
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [age, setAge] = useState("");
-    const [height, setHeight] = useState("");
-    const [weight, setWeight] = useState("");
-    const [activity, setActivity] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [age, setAge] = useState("");
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [activity_level, setActivity] = useState("");
 
-    const [loginError, setLoginError] = useState("");
+  const [loginError, setLoginError] = useState("");
 
-    const handleSignup = async () => {
-        try {
-            await actions.signUp({ email, password, age, height, weight, activity });
-            navigate("/profile");
-        } catch (error) {
-            setLoginError("Failed to sign up: " + error.message);
-        }
-    };
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    const form = { name, email, password, age, height, weight, activity_level };
+    try {
+      await actions.signUp(form, () => {
+        navigate("/login");
+      });
+    } catch (error) {
+      setLoginError("Failed to sign up: " + error.message);
+    }
+  };
 
-    return (
-        <div className="text-left">
-            <h3>Join Us</h3>
-            <p>Welcome! Join us by signing up below.</p>
-            {/* Input fields */}
-            <p>Email</p>
-            <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-            <p>Password</p>
-            <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-            <p>Age</p>
-            <input type="number" onChange={(e) => setAge(e.target.value)} value={age} />
-            <p>Height (in cm)</p>
-            <input type="number" onChange={(e) => setHeight(e.target.value)} value={height} />
-            <p>Weight (in kg)</p>
-            <input type="number" onChange={(e) => setWeight(e.target.value)} value={weight} />
-            <p>Activity Level:</p>
-            <select value={activity} onChange={(e) => setActivity(e.target.value)}>
+  return (
+    <div className="container text-center signup-page">
+      <div className="header-container">
+        <HeaderSignup />
+        {/* <h1>Join Us</h1>
+        <p>{currentText}</p> */}
+      </div>
+      <div className="signup-container">
+        <div className="signup-content">
+          <form className="signup-form" onSubmit={handleSignup}>
+            <div className="input-group">
+              <label htmlFor="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                className="input-field"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                className="input-field"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                className="input-field"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="age">Age</label>
+              <input
+                type="number"
+                id="age"
+                className="input-field"
+                value={age}
+                onChange={(e) => setAge(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="height">Height (in cm)</label>
+              <input
+                type="number"
+                id="height"
+                className="input-field"
+                value={height}
+                onChange={(e) => setHeight(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="weight">Weight (in kg)</label>
+              <input
+                type="number"
+                id="weight"
+                className="input-field"
+                value={weight}
+                onChange={(e) => setWeight(e.target.value)}
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="activityLevel">Activity Level</label>
+              <select
+                id="activityLevel"
+                className="input-field"
+                value={activity_level}
+                onChange={(e) => setActivity(e.target.value)}
+              >
                 <option value="Very Active">Very Active</option>
-                <option value="Less">Less</option>
+                <option value="Less Active">Less Active</option>
                 <option value="None">None</option>
                 <option value="Disabled">Disabled</option>
-            </select>
-            {loginError && <p className="text-danger">{loginError}</p>}
-            <button onClick={handleSignup} className="btn btn-secondary">Sign up</button>
-            <p>Already a member? <span className="text-primary" style={{ cursor: 'pointer' }} onClick={() => navigate('/login')}>Log in</span></p>
+              </select>
+            </div>
+            {loginError && <p className="error-message">{loginError}</p>}
+            <div className="button-group">
+              <button type="submit" className="signup-btn">
+                Sign up
+              </button>
+            </div>
+            <p>
+              Already a member?{" "}
+              <span className="text-success" onClick={() => navigate("/login")}>
+                Log in
+              </span>
+            </p>
+          </form>
         </div>
-    );
-};
+        <div className="image-container">
+          <img
+            src="https://i.ibb.co/1Mp1cg4/rotatedprofileimg.jpg"
+            alt="Description of Image"
+            className="responsive-image"
+          />
+        </div>
+      </div>
+    </div>
+  );
+
+  // return (
+  //   <div className="container text-center signup-page">
+  //     <div className="row d-flex justify-content-center" id="firstRowSignup">
+  //       <div className="col">
+  //         <h1>Join Us</h1>
+  //         <p>Welcome! Join us by signing up below.</p>
+  //       </div>
+  //     </div>
+  //     <div className="signup-container">
+  //       <div className="row justify-content-around">
+  //         <div className="col">
+  //           <div className="signup-content">
+  //             <form className="signup-form" onSubmit={handleSignup}>
+  //               <div className="input-group">
+  //                 <label htmlFor="name">Name</label>
+  //                 <input
+  //                   type="text"
+  //                   id="name"
+  //                   className="input-field"
+  //                   value={name}
+  //                   onChange={(e) => setName(e.target.value)}
+  //                 />
+  //               </div>
+  //               <div className="input-group">
+  //                 <label htmlFor="email">Email</label>
+  //                 <input
+  //                   type="email"
+  //                   id="email"
+  //                   className="input-field"
+  //                   value={email}
+  //                   onChange={(e) => setEmail(e.target.value)}
+  //                 />
+  //               </div>
+  //               <div className="input-group">
+  //                 <label htmlFor="password">Password</label>
+  //                 <input
+  //                   type="password"
+  //                   id="password"
+  //                   className="input-field"
+  //                   value={password}
+  //                   onChange={(e) => setPassword(e.target.value)}
+  //                 />
+  //               </div>
+  //               <div className="input-group">
+  //                 <label htmlFor="age">Age</label>
+  //                 <input
+  //                   type="number"
+  //                   id="age"
+  //                   className="input-field"
+  //                   value={age}
+  //                   onChange={(e) => setAge(e.target.value)}
+  //                 />
+  //               </div>
+  //               <div className="input-group">
+  //                 <label htmlFor="height">Height (in cm)</label>
+  //                 <input
+  //                   type="number"
+  //                   id="height"
+  //                   className="input-field"
+  //                   value={height}
+  //                   onChange={(e) => setHeight(e.target.value)}
+  //                 />
+  //               </div>
+  //               <div className="input-group">
+  //                 <label htmlFor="weight">Weight (in kg)</label>
+  //                 <input
+  //                   type="number"
+  //                   id="weight"
+  //                   className="input-field"
+  //                   value={weight}
+  //                   onChange={(e) => setWeight(e.target.value)}
+  //                 />
+  //               </div>
+  //               <div className="input-group">
+  //                 <label htmlFor="activityLevel">Activity Level</label>
+  //                 <select
+  //                   id="activityLevel"
+  //                   className="input-field"
+  //                   value={activity_level}
+  //                   onChange={(e) => setActivity(e.target.value)}
+  //                 >
+  //                   <option value="Very Active">Very Active</option>
+  //                   <option value="Less Active">Less Active</option>
+  //                   <option value="None">None</option>
+  //                   <option value="Disabled">Disabled</option>
+  //                 </select>
+  //               </div>
+  //               {loginError && <p className="error-message">{loginError}</p>}
+  //               <div className="button-group">
+  //                 <button type="submit" className="signup-btn">
+  //                   Sign up
+  //                 </button>
+  //               </div>
+  //               <p>
+  //                 Already a member?{" "}
+  //                 <span
+  //                   className="text-success"
+  //                   onClick={() => navigate("/login")}
+  //                 >
+  //                   Log in
+  //                 </span>
+  //               </p>
+  //             </form>
+  //           </div>
+  //         </div>
+  //         <div class="col">Column</div>
+  //       </div>
+  //     </div>
+  //   </div>
+  // );
+}
+
+// code as of 4/15
+// import React, { useState, useContext } from "react";
+// import { Context } from "../store/appContext";
+// import { useNavigate } from "react-router-dom";
+// import "../../styles/signup.css";
+
+// export default function Signup() {
+//     const { actions } = useContext(Context);
+//     const navigate = useNavigate();
+
+//     const [name, setName] = useState("");
+//     const [email, setEmail] = useState("");
+//     const [password, setPassword] = useState("");
+//     const [age, setAge] = useState("");
+//     const [height, setHeight] = useState("");
+//     const [weight, setWeight] = useState("");
+//     const [activity_level, setActivity] = useState("");
+
+//     const [loginError, setLoginError] = useState("");
+
+//     const handleSignup = async (e) => {
+//         e.preventDefault();
+//         const form = { name, email, password, age, height, weight, activity_level };
+//         try {
+//             await actions.signUp(form, () => {
+//                 navigate("/login");
+//             });
+//         } catch (error) {
+//             setLoginError("Failed to sign up: " + error.message);
+//         }
+//     };
+
+//     return (
+//         <div className="signup-page">
+//             <div className="signup-container">
+//                 <div className="signup-image-container">
+//                     <div className="left-images">
+//                         <div className="image-wrapper" id="salad">
+//                             <img src="https://i.ibb.co/BsfNKKv/saladbowl1.png" alt="Salad Bowl" />
+//                         </div>
+//                         <div className="image-wrapper" id="avocado">
+//                             <img src="https://i.ibb.co/3yR2CpP/avocado.png" alt="Avocado" />
+//                         </div>
+//                     </div>
+//                     <div className="signup-content">
+//                         <h2 className="signup-heading">Join Us</h2>
+//                         <p>Welcome! Join us by signing up below.</p>
+//                         <form className="signup-form" onSubmit={handleSignup}>
+//                             <div className="input-group">
+//                                 <label htmlFor="name">Name</label>
+//                                 <input type="text" id="name" className="input-field" value={name} onChange={(e) => setName(e.target.value)} />
+//                             </div>
+//                             <div className="input-group">
+//                                 <label htmlFor="email">Email</label>
+//                                 <input type="email" id="email" className="input-field" value={email} onChange={(e) => setEmail(e.target.value)} />
+//                             </div>
+//                             <div className="input-group">
+//                                 <label htmlFor="password">Password</label>
+//                                 <input type="password" id="password" className="input-field" value={password} onChange={(e) => setPassword(e.target.value)} />
+//                             </div>
+//                             <div className="input-group">
+//                                 <label htmlFor="age">Age</label>
+//                                 <input type="number" id="age" className="input-field" value={age} onChange={(e) => setAge(e.target.value)} />
+//                             </div>
+//                             <div className="input-group">
+//                                 <label htmlFor="height">Height (in cm)</label>
+//                                 <input type="number" id="height" className="input-field" value={height} onChange={(e) => setHeight(e.target.value)} />
+//                             </div>
+//                             <div className="input-group">
+//                                 <label htmlFor="weight">Weight (in kg)</label>
+//                                 <input type="number" id="weight" className="input-field" value={weight} onChange={(e) => setWeight(e.target.value)} />
+//                             </div>
+//                             <div className="input-group">
+//                                 <label htmlFor="activityLevel">Activity Level</label>
+//                                 <select id="activityLevel" className="input-field" value={activity_level} onChange={(e) => setActivity(e.target.value)}>
+//                                     <option value="Very Active">Very Active</option>
+//                                     <option value="Less Active">Less Active</option>
+//                                     <option value="None">None</option>
+//                                     <option value="Disabled">Disabled</option>
+//                                 </select>
+//                             </div>
+//                             {loginError && <p className="error-message">{loginError}</p>}
+//                             <div className="button-group">
+//                                 <button type="submit" className="btn">Sign up</button>
+//                             </div>
+//                             <p>Already a member? <span className="text-primary" onClick={() => navigate('/login')}>Log in</span></p>
+//                         </form>
+//                     </div>
+//                     <div className="right-images">
+//                         <div className="image-wrapper" id="grapefruit">
+//                             <img src="https://i.ibb.co/7tVpxPW/signup-image1.png" alt="Grapefruit" />
+//                         </div>
+//                         <div className="image-wrapper" id="cookie">
+//                             <img src="https://i.ibb.co/ZYTZdN1/cookies-1-1.png" alt="Cookie" />
+//                         </div>
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }

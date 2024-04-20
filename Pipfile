@@ -21,6 +21,10 @@ typing-extensions = "*"
 flask-jwt-extended = "*"
 bcrypt = "*"
 flask-bcrypt = "*"
+mail = "*"
+flask-mail = "*"
+sendgrid = "*"
+requests = "*"
 
 [requires]
 python_version = "3.10"

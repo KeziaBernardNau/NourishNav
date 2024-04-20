@@ -1,49 +1,29 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-import { useNavigate } from "react-router-dom";
-import "../../styles/home.css";
-import Signup from "../component/signup"
+import React from "react";
+import "../../styles/hero.css";
+import { Link } from "react-router-dom";
+import nourishNav from "../../img/nourishNav.gif";
 
-export const Home = () => {
-    const { actions } = useContext(Context);
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [loginError, setLoginError] = useState("");
-    const [isMember, setIsMember] = useState(true); // Add state to toggle between login and signup view
-    const navigate = useNavigate();
-
-    const handleLogin = async () => {
-        try {
-            await actions.login({ email, password });
-            navigate("/macro"); // Navigate after a successful login
-        } catch (error) {
-            setLoginError(error.message); // Set login error to be displayed in UI
-        }
-    };
-
-
-
+const HeroSection = () => {
     return (
-        <div className="w-50 mx-auto">
-            <img src="#" className="mx-auto" height="300px" width="300px" />
-            {isMember ? (
-                <div className="text-left">
-                    <h3>Sign In</h3>
-                    <p>Hi there! Nice to see you again.</p>
-                    <p>Email</p>
-                    <input type="email" onChange={(e) => setEmail(e.target.value)} value={email} />
-                    <p>Password</p>
-                    <input type="password" onChange={(e) => setPassword(e.target.value)} value={password} />
-                    {loginError && <p className="text-danger">{loginError}</p>}
-                    <button onClick={handleLogin} className="btn btn-success">Sign In</button>
-                    <p>Not a member yet? <span className="text-primary" style={{ cursor: 'pointer' }} onClick={() => setIsMember(false)}>Sign up</span></p>
-                    <button onClick={() => navigate("/macro")}>Test Navigate</button>
-
-                </div>
-            ) : (
-                <Signup />
-            )}
+        <div className="hero">
+            <div></div>
+            <div className="hero-background"></div>
+            <div className="hero-overlay"></div>
+            <div className="hero-content">
+                <h5 className="banner-title">
+                    Discover Healthier Living with NourishNav
+                </h5>
+                <p className="banner-text">Track Your Macros, Elevate Your Health!</p>
+                <Link to="/signup" className="btn">
+                    Sign Up
+                </Link>
+            </div>
+            {/* container for nourishNav logo */}
+            <div className="hero-gif">
+                <img src={nourishNav} alt="nourishNav Logo" />
+            </div>
         </div>
     );
 };
 
+export default HeroSection;
